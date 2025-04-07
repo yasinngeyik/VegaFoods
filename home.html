@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VegaFoods</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+        
+        
+<link rel="stylesheet" href="css/flaticon.css">
+</head>
+<body>
+   
+<header>
+
+<!-- Navbar -->
+
+
+
+<nav class="bg-white shadow-md fixed top-0 w-full z-50">
+    <div class="bg-green-600 py-2">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-4">
+            <div class="flex justify-between w-full">
+                <span class="text-xs text-white"> <i class="fa-solid fa-phone fa-sm m-2"></i>+1235 2355 98</span>
+                <span class="text-xs text-white "> <i
+                        class="fa-solid fa-paper-plane fa-sm m-2"></i>youremail@email.com</span>
+                <span class="text-xs text-center text-white">3-5 Business days delivery & Free Returns</span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- navbar-top -->
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+
+    
+            <div class="text-2xl font-bold text-green-600 hover:text-black cursor-pointer">
+                VEGEFOODS
+            </div>
+
+            <!-- Hamburger Button (Mobile) -->
+            <div class="lg:hidden">
+                <button id="menu-toggle" class="text-gray-700 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+
+            <ul id="nav-menu"
+                class="hidden lg:flex space-x-6 items-center text-sm font-medium transition-all duration-300">
+                <li><a href="#" class="hover:text-black text-xs">HOME</a></li>
+                <li class="relative group">
+                    <a href="#" class="hover:text-black text-xs">SHOP</a>
+                    <div
+                        class="absolute left-0 mt-2 w-32 bg-white border rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition duration-200 pointer-events-none group-hover:pointer-events-auto">
+                        <a href="#" class="block px-4 py-2 text-xs hover:bg-gray-100">Option 1</a>
+                        <a href="#" class="block px-4 py-2 text-xs hover:bg-gray-100">Option 2</a>
+                        <a href="#" class="block px-4 py-2 text-xs hover:bg-gray-100">Option 3</a>
+                        <a href="#" class="block px-4 py-2 text-xs hover:bg-gray-100">Option 4</a>
+                    </div>
+                </li>
+                <li><a href="#" class="hover:text-black text-xs">ABOUT</a></li>
+                <li><a href="#" class="hover:text-black text-xs">BLOG</a></li>
+                <li><a href="#" class="hover:text-black text-xs">CONTACT</a></li>
+                <li>
+                    <div class="font-semibold text-xs cursor-pointer">
+                        <i class="fa-solid fa-cart-shopping mr-1"></i> [0]
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="mobile-menu" class="lg:hidden hidden px-4 pb-4 space-y-2 text-sm font-medium bg-white border-t shadow">
+        <a href="#" class="block hover:text-black text-xs">HOME</a>
+        <a href="#" class="block hover:text-black text-xs">SHOP</a>
+        <a href="#" class="block hover:text-black text-xs">ABOUT</a>
+        <a href="#" class="block hover:text-black text-xs">BLOG</a>
+        <a href="#" class="block hover:text-black text-xs">CONTACT</a>
+        <div class="font-semibold text-xs cursor-pointer">
+            <i class="fa-solid fa-cart-shopping mr-1"></i> [0]
+        </div>
+    </div>
+</nav>
+
+</header>
+<main>
+<section class="relative w-full h-[80vh] overflow-hidden">
+    <!-- Slide Container -->
+    <div class="relative w-full h-full" id="slider">
+        <!-- Slide 1 -->
+        <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-100 slide">
+            <img src="img/fruit.jpg" class="w-full h-full object-cover" alt="Slide 1" />
+            <div class="absolute inset-0 bg-black/40"></div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">We serve Fresh Vegetables & Fruits</h1>
+                <h2 class="text-xl md:text-2xl mb-4">We deliver organic vegetables & fruits</h2>
+                <a href="#" class="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-full font-semibold">View
+                    Details</a>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 slide">
+            <img src="img/download.jpg" class="w-full h-full object-cover" alt="Slide 2" />
+            <div class="absolute inset-0 bg-black/40"></div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">100% Fresh & Organic Foods</h1>
+                <h2 class="text-xl md:text-2xl mb-4">We deliver organic vegetables & fruits</h2>
+                <a href="#" class="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-full font-semibold">View
+                    Details</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 ftco-services">
+            <div class="text-center flex flex-col items-center justify-center p-4">
+                <div
+                    class="bg-yellow-500 text-white rounded-full w-20 h-20 flex items-center justify-center mb-4 transition-colors duration-300 hover:bg-green-500">
+                   <img class="truckIcon" src="img/shipped.png" alt="">
+                </div>
+                <h3 class="text-xl font-semibold">Free Shipping</h3>
+                <span>On order over $100</span>
+            </div>
+
+            <div class="text-center flex flex-col items-center justify-center p-4">
+                <div
+                    class="bg-green-500 text-white rounded-full w-20 h-20 flex items-center justify-center mb-4 transition-colors duration-300 hover:bg-yellow-500">
+                    <span class="flaticon-diet text-3xl"></span>
+                </div>
+                <h3 class="text-xl font-semibold">Always Fresh</h3>
+                <span>Product well packaged</span>
+            </div>
+
+            <div class="text-center flex flex-col items-center justify-center p-4">
+                <div
+                    class="bg-blue-500 text-white rounded-full w-20 h-20 flex items-center justify-center mb-4 transition-colors duration-300 hover:bg-yellow-500">
+                    <span class="flaticon-award text-3xl"></span>
+                </div>
+                <h3 class="text-xl font-semibold">Superior Quality</h3>
+                <span>Quality Products</span>
+            </div>
+
+            <div class="text-center flex flex-col items-center justify-center p-4">
+                <div
+                    class="bg-green-700 text-white rounded-full w-20 h-20 flex items-center justify-center mb-4 transition-colors duration-300 hover:bg-yellow-500">
+                    <span class="flaticon-customer-service text-3xl"></span>
+                </div>
+                <h3 class="text-xl font-semibold">Support</h3>
+                <span>24/7 Support</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section ftco-category ftco-no-pt">
+    <div class="container mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="col-span-1 md:col-span-1 flex flex-col gap-4">
+                <!-- 1 -->
+                <div class="relative">
+                    <img src="img/1.jpg" alt="Dried" class="w-full h-full object-cover rounded-md">
+                    <div class="absolute bottom-0 left-0 bg-green-600 text-white px-3 py-2 rounded-br-md">
+                        <h2 class="mb-0 text-sm font-semibold"><a href="#">Fruits</a></h2>
+                    </div>
+                </div>
+                <!-- 2 -->
+                <div class="relative">
+                    <img src="img/2.jpg" alt="Dried" class="w-full h-full object-cover rounded-md">
+                    <div class="absolute bottom-0 left-0 bg-green-600 text-white px-3 py-2 rounded-br-md">
+                        <h2 class="mb-0 text-sm font-semibold"><a href="#">Vegatables</a></h2>
+                    </div>
+                </div>
+            </div>
+<!-- 3 -->
+            <div class="col-span-1 md:col-span-1 flex justify-center relative">
+                <div class="flex justify-center items-center h-full">
+                    <img src="img/3.jpg" alt="Vegetables" class="w-full h-full object-cover">
+                    
+                    <div
+                        class="text text-center absolute inset-0 flex flex-col justify-start items-center p-4">
+                       
+                        <h2 class="text-green-600 italic font-serif text-xl">Vegetables</h2>
+                        <p class="text-gray-500	">Protect the health of every home</p>
+                        <br>
+                        <p>
+                            <a href="#" class="btn btn-primary bg-green-500 text-white py-2 px-4 rounded-3xl hover:bg-blue-600">
+                                Shop Now
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-span-1 md:col-span-1 flex flex-col gap-4">
+                <div class="relative">
+                    <img src="img/4.jpg" alt="Dried" class="w-full h-full object-cover rounded-md">
+                    <div class="absolute bottom-0 left-0 bg-green-600 text-white px-3 py-2 rounded-br-md">
+                        <h2 class="mb-0 text-sm font-semibold"><a href="#">Juices</a></h2>
+                    </div>
+                </div>
+                <!-- 4 -->
+                <div class="relative">
+                    <img src="img/5.jpg" alt="Dried" class="w-full h-full object-cover rounded-md">
+                    <div class="absolute bottom-0 left-0 bg-green-600 text-white px-3 py-2 rounded-br-md">
+                        <h2 class="mb-0 text-sm font-semibold"><a href="#">Dried</a></h2>
+                    </div>
+                </div>
+<!--  -->
+            </div>
+        </div>
+    </div>
+</section>
+
+
+</main>
+
+
+
+
+
+    <script src="app.js"></script>
+</body>
+</html>
