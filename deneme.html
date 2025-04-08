@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+    <section class="relative">
+        <!-- Resim -->
+        <img src="img/lettuce.jpg" alt="Açıklama" class="w-full h-auto object-cover">
+    
+        <!-- Resmin İçindeki Yazılar ve Zamanlayıcı -->
+        <div class="absolute bottom-0 top-20 right-28 w-1/3 p-6 text-white italic">
+            <div class="text-left mt-24">
+                <h4 class="text-xl text-green-600 italic">Best Price For You</h4>
+                <br>
+                <h1 class="text-5xl font-bold mt-0">Deal of the day</h1>
+                <br>
+                <p class="text-gray-500 text-lg">Far far away, behind the word mountains, far from the countries Vokalia and
+                    Consonantia</p>
+                <br>
+                <h2 class="text-3xl text-green-600 italic">Spinach</h2>
+                <br>
+                <span class="text-lg text-gray-600"> $10 <span class="text-green-600">now $5 only</span></span>
+            </div>
+    
+            <!-- Zamanlayıcı -->
+            <div id="timer" class="mt-6">
+                <p class="text-xl font-semibold">Hedef zamana kalan süre:</p>
+                <div class="d-flex mt-5">
+                    <div class="time" id="days"></div> Gün
+                    <div class="time pl-3" id="hours"></div> Saat
+                    <div class="time pl-3" id="minutes"></div> Dakika
+                    <div class="time pl-3" id="seconds"></div> Saniye
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        // Zamanlayıcı fonksiyonu
+        function startTimer() {
+            const endTime = new Date("2025-12-31T23:59:59").getTime(); // Hedef zaman (bu örnekte 31 Aralık 2025)
+
+            setInterval(function () {
+                const now = new Date().getTime();
+                const timeLeft = endTime - now;
+
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                // Sayfada zaman gösterme
+                document.getElementById("days").innerHTML = days;
+                document.getElementById("hours").innerHTML = hours;
+                document.getElementById("minutes").innerHTML = minutes;
+                document.getElementById("seconds").innerHTML = seconds;
+            }, 1000); // Zamanı her saniye günceller
+        }
+
+        window.onload = startTimer; // Sayfa yüklendiğinde zamanlayıcıyı başlat
+    </script>
+
+</body>
+</html>

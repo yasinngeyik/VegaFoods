@@ -4,6 +4,7 @@
     box-sizing: border-box;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
 
 }
   #navBrand {
@@ -174,3 +175,18 @@
         opacity: 0.8;
     }
 }
+
+.relative {
+    position: relative;
+    display: inline-block;
+}
+.lettuce {
+    width: 95%;            
+    height: 100%;          
+    padding: 6em 0;
+    background-position: center;
+    margin-left: 5px;
+    border-radius: 25px;
+ 
+}
+
