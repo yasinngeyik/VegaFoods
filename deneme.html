@@ -1,69 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-
+    <title>Ürün ve Yorumlar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <section class="relative">
-        <!-- Resim -->
-        <img src="img/lettuce.jpg" alt="Açıklama" class="w-full h-auto object-cover">
-    
-        <!-- Resmin İçindeki Yazılar ve Zamanlayıcı -->
-        <div class="absolute bottom-0 top-20 right-28 w-1/3 p-6 text-white italic">
-            <div class="text-left mt-24">
-                <h4 class="text-xl text-green-600 italic">Best Price For You</h4>
-                <br>
-                <h1 class="text-5xl font-bold mt-0">Deal of the day</h1>
-                <br>
-                <p class="text-gray-500 text-lg">Far far away, behind the word mountains, far from the countries Vokalia and
-                    Consonantia</p>
-                <br>
-                <h2 class="text-3xl text-green-600 italic">Spinach</h2>
-                <br>
-                <span class="text-lg text-gray-600"> $10 <span class="text-green-600">now $5 only</span></span>
-            </div>
-    
-            <!-- Zamanlayıcı -->
-            <div id="timer" class="mt-6">
-                <p class="text-xl font-semibold">Hedef zamana kalan süre:</p>
-                <div class="d-flex mt-5">
-                    <div class="time" id="days"></div> Gün
-                    <div class="time pl-3" id="hours"></div> Saat
-                    <div class="time pl-3" id="minutes"></div> Dakika
-                    <div class="time pl-3" id="seconds"></div> Saniye
-                </div>
+<div id="products-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-12"></div>
+
+<body class="bg-gray-100">
+
+    <section class="container mx-auto p-6">
+        <p class="text-lg font-serif text-green-600 text-center mb-3">Testimony</p>
+        <h1 class="text-5xl font-bold text-center mb-6">Our satisfied customers say</h1>
+        <p class="text-m text-gray-500 text-center mb-6">Far far away, behind the word mountains, there live the blind
+            texts.</p>
+
+       
+
+        <div class="slider w-full max-w-lg mx-auto overflow-hidden relative border border-gray-300 rounded-lg p-4 mb-8">
+            <div id="commentSlider" class="relative"></div>
+            <div class="absolute top-1/2 left-0 transform -translate-y-1/2 flex justify-between w-full px-4">
+                <button id="prevBtn"
+                    class="bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-700">&#8592;</button>
+                <button id="nextBtn"
+                    class="bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-700">&#8594;</button>
             </div>
         </div>
     </section>
-    
+
     <script>
-        // Zamanlayıcı fonksiyonu
-        function startTimer() {
-            const endTime = new Date("2025-12-31T23:59:59").getTime(); // Hedef zaman (bu örnekte 31 Aralık 2025)
+        // JSON dosyasını fetch ile al ve ürünleri göster
+        async function loadProducts() {
+            try {
+                const response = await fetch("/product.json");
+                const data = await response.json();
+                const productsContainer = document.getElementById('products-container');
 
-            setInterval(function () {
-                const now = new Date().getTime();
-                const timeLeft = endTime - now;
+                data.products.forEach(product => {
+                    const productDiv = document.createElement("div");
+                    productDiv.classList.add("product-card", "bg-white", "rounded-lg", "shadow", "p-4");
 
-                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-                // Sayfada zaman gösterme
-                document.getElementById("days").innerHTML = days;
-                document.getElementById("hours").innerHTML = hours;
-                document.getElementById("minutes").innerHTML = minutes;
-                document.getElementById("seconds").innerHTML = seconds;
-            }, 1000); // Zamanı her saniye günceller
+                    productDiv.innerHTML = `
+                    ${product.discountedPrice ? `
+                        <span class="absolute top-2 left-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">
+                            SALE!
+                        </span>` : ''}
+                    <img src="${product.image}" alt="${product.name}" class="rounded-t-lg mb-3 w-full h-40 object-cover">
+                    <h3 class="font-semibold text-center">${product.name}</h3>
+                    <p class="text-center text-green-600 font-bold">$${product.discountedPrice || product.price}</p>
+                    ${product.discountedPrice ? `<p class="text-center text-gray-400 text-sm"><s>$${product.price}</s></p>` : ''}
+                `;
+                    productsContainer.appendChild(productDiv);
+                });
+            } catch (error) {
+                console.error("Ürünler yüklenirken hata oluştu:", error);
+            }
         }
 
-        window.onload = startTimer; // Sayfa yüklendiğinde zamanlayıcıyı başlat
+        // JSON dosyasını fetch ile al ve yorumları sliderda göster
+        async function loadComments() {
+            try {
+                const response = await fetch('/product.json');
+                const data = await response.json();
+                const comments = data.comments;
+                const commentSlider = document.getElementById('commentSlider');
+
+                comments.forEach((comment, index) => {
+                    const slide = document.createElement('div');
+                    slide.className = 'slide hidden';  // Başlangıçta gizle
+                    if (index === 0) slide.classList.add('active');  // İlk slide'ı aktif yap
+
+                    slide.innerHTML = `
+                    <img src="${comment.userImage}" alt="${comment.userName}" class="w-20 h-20 rounded-full mb-4 object-cover mx-auto">
+                    <h3 class="font-semibold text-center">${comment.userName}</h3>
+                    <div class="stars text-yellow-500 mb-2 text-center">
+                        ${'★'.repeat(comment.rating)}${'☆'.repeat(5 - comment.rating)}
+                    </div>
+                    <p class="italic text-center">"${comment.content}"</p>
+                    <p class="text-sm text-gray-500 text-center mt-2">Beğeni: ${comment.likes}</p>
+                `;
+                    commentSlider.appendChild(slide);
+                });
+
+                // Slider başta bir yorumun görünmesini sağla
+                showSlide(0);
+
+                // Slider kontrolleri
+                document.getElementById('prevBtn').addEventListener('click', prevSlide);
+                document.getElementById('nextBtn').addEventListener('click', nextSlide);
+            } catch (error) {
+                console.error('Yorumlar alınamadı:', error);
+            }
+        }
+
+        let currentIndex = 0;
+
+        // Slider'da gösterilecek slide'ı belirle
+        function showSlide(index) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => slide.classList.add('hidden'));  // Tüm slide'ları gizle
+            slides[index].classList.remove('hidden');  // Sadece aktif slide'ı göster
+        }
+
+        // Sonraki slide'a geç
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % document.querySelectorAll('.slide').length;
+            showSlide(currentIndex);
+        }
+
+        // Önceki slide'a geç
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + document.querySelectorAll('.slide').length) % document.querySelectorAll('.slide').length;
+            showSlide(currentIndex);
+        }
+
+        // Sayfa yüklenince ürünleri ve yorumları yükle
+        loadProducts();
+        loadComments();
     </script>
 
+
 </body>
+
 </html>
