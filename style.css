@@ -83,7 +83,26 @@
       object-fit: cover; 
     }
 
- 
+.container {
+  display: flex;
+  gap: 25px;  
+  justify-content: center;
+  align-items: center;
+  margin-left: 140px;
+}
+
+.box {
+  width: 250px;  
+  height: 150px; 
+  background-color: white; 
+  padding: 18px;
+  border-radius: 5px; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  color: #333;
+}
+
+
 .icons-container {
     position: absolute;
     top: 0;
@@ -112,7 +131,7 @@
 
 
 .icon-button:hover {
-    background-color: rgb(48, 104, 5);  /* Hoverda koyu yeşil */   
+    background-color: rgb(48, 104, 5);  
 }
 
 .icon-button i {

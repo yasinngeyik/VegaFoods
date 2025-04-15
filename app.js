@@ -29,13 +29,13 @@ function updateCartUI() {
                 <button data-action="decrease" class="px-2 py-1 text-xs bg-gray-200 rounded">-</button>
                 <span class="text-sm font-bold">${item.quantity}</span>
                 <button data-action="increase" class="px-2 py-1 text-xs bg-gray-200 rounded">+</button>
-                <button data-action="remove" class="px-2 py-1 text-xs bg-red-200 rounded">Sil</button>
+                <button data-action="remove" class="px-2 py-1 text-xs bg-red-200 rounded">Delete</button>
               </div>
             </div>
           `;
         });
 
-        cartTotalEl.textContent = `Toplam: $${totalPrice.toFixed(2)}`;
+        cartTotalEl.textContent = `Total: $${totalPrice.toFixed(2)}`;
     }
 
     countEl.textContent = `[${totalItems}]`;
