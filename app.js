@@ -1,52 +1,130 @@
-async function loadProducts() {
-    try {
-        const { products } = await (await fetch("/product.json")).json();
-        const productsContainer = document.querySelector("#products-container");
-        const productsToShow = products.slice(0, products.length - 7);
+const cart = [];
 
-        const productHTML = productsToShow.map(product => `
-            <div class="product-card rounded-lg shadow-sm :shadow-md">
-                ${product.discountedPrice ? `
-                    <span class="top-2 left-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">
-                        SALE!
-                    </span>
-                ` : ''}
-                <img src="${product.image}" 
-                     alt="${product.name}" 
-                     class="product-image w-full h-48 object-cover">
-                
-                <div class="icons-container top-4 right-4 flex flex-row gap-2">
-                    <button class="icon-button w-8 h-8 rounded-full flex items-center justify-center shadow-md">
+function updateCartUI() {
+    const countEl = document.querySelector("#cart-count");
+    const cartItemsEl = document.querySelector("#cart-items");
+    const cartTotalEl = document.querySelector("#cart-total");
 
-             <i class="fa-solid fa-bars"></i>
-                    </button>
-                    <button class="icon-button w-8 h-8 rounded-full flex items-center justify-center shadow-md">
-                     <i class="fa-solid fa-cart-shopping"></i>
-                    </button>
-                    <button class="icon-button w-8 h-8 rounded-full flex items-center justify-center shadow-md">
-            <i class="fa-solid fa-heart"></i>
-                    </button>
-                </div>
+    let totalItems = 0;
+    let totalPrice = 0;
+    cartItemsEl.innerHTML = '';
 
-                <div class="p-4">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">${product.name}</h3>
-                    <p class="text-green-600 font-bold text-xl">
-                        $${product.discountedPrice || product.price}
-                    </p>
-                    ${product.discountedPrice ?
-                `<p class="text-gray-400 text-sm"><s>$${product.price}</s></p>`
-                : ''}
-                </div>
+    if (cart.length === 0) {
+        cartItemsEl.innerHTML = `<p class="text-gray-500 text-xs">Sepetiniz boş</p>`;
+        cartTotalEl.textContent = "";
+    } else {
+        cart.forEach((item, index) => {
+            totalItems += item.quantity;
+            const itemPrice = (item.discountedPrice || item.price) * item.quantity;
+            totalPrice += itemPrice;
+
+            cartItemsEl.innerHTML += `
+            <div class="flex items-center justify-between border-b pb-1" data-index="${index}">
+              <img src="${item.image}" class="w-10 h-10 object-cover rounded mr-2" />
+              <div class="flex-1 text-gray-800 text-xs">
+                ${item.name}<br>
+                <span class="text-green-600 font-semibold">$${itemPrice.toFixed(2)}</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <button data-action="decrease" class="px-2 py-1 text-xs bg-gray-200 rounded">-</button>
+                <span class="text-sm font-bold">${item.quantity}</span>
+                <button data-action="increase" class="px-2 py-1 text-xs bg-gray-200 rounded">+</button>
+                <button data-action="remove" class="px-2 py-1 text-xs bg-red-200 rounded">Sil</button>
+              </div>
             </div>
-        `).join('');
+          `;
+        });
 
-        productsContainer.innerHTML = productHTML;
-    } catch (error) {
-        console.error("Ürünler yüklenirken hata oluştu:", error);
+        cartTotalEl.textContent = `Toplam: $${totalPrice.toFixed(2)}`;
     }
+
+    countEl.textContent = `[${totalItems}]`;
 }
 
-class CommentSlider {
+// Event delegation for cart buttons
+document.querySelector("#cart-items").addEventListener("click", function (e) {
+    const action = e.target.dataset.action;
+    if (!action) return;
+
+    const itemDiv = e.target.closest("[data-index]");
+    const index = parseInt(itemDiv.dataset.index);
+
+    if (action === "increase") {
+        cart[index].quantity++;
+    } else if (action === "decrease") {
+        if (cart[index].quantity > 1) {
+            cart[index].quantity--;
+        } else {
+            cart.splice(index, 1);
+        }
+    } else if (action === "remove") {
+        cart.splice(index, 1);
+    }
+
+    updateCartUI();
+});
+
+function addToCart(product) {
+    const existingIndex = cart.findIndex(item => item.id === product.id);
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += 1;
+    } else {
+        cart.push({ ...product, quantity: 1 });
+    }
+    updateCartUI();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector("#cart-button").addEventListener("click", () => {
+        document.querySelector("#mini-cart").classList.toggle("hidden");
+    });
+
+    loadProducts();
+});
+
+async function loadProducts() {
+    try {
+        const response = await fetch("/product.json");
+        const data = await response.json();
+        const products = data.products.slice(0, data.products.length - 7);
+        const container = document.querySelector("#products-container");
+
+        container.innerHTML = products.map(product => `
+          <div class="product-card relative rounded-lg shadow-sm hover:shadow-md overflow-hidden">
+            ${product.discountedPrice ? `
+              <span class="absolute top-2 left-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">
+                SALE!
+              </span>` : ''}
+
+            <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover product-image ">
+
+            <div class="absolute inset-0 flex justify-center items-center space-x-2">
+              <button class="icon-button w-9 h-9 rounded-full flex items-center justify-center shadow-md mt-20"
+                onclick='addToCart(${JSON.stringify(product)})'>
+                <i class="fa-solid fa-cart-shopping"></i>
+              </button>
+              <button class="icon-button w-9 h-9 rounded-full flex items-center justify-center shadow-md mt-20">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <button class="icon-button w-9 h-9 rounded-full flex items-center justify-center shadow-md mt-20">
+                <i class="fa-solid fa-bars"></i>
+              </button>
+            </div>
+
+            <div class="p-4">
+              <h3 class="text-lg font-semibold text-gray-800 mb-2">${product.name}</h3>
+              <p class="text-green-600 font-bold text-xl">$${product.discountedPrice || product.price}</p>
+              ${product.discountedPrice ? `<p class="text-gray-400 text-sm"><s>$${product.price}</s></p>` : ''}
+            </div>
+          </div>
+        `).join('');
+    } catch (err) {
+        console.error("Ürünler yüklenirken hata:", err);
+    }
+
+
+
+} class CommentSlider {
     constructor() {
         this.currentIndex = 0;
         this.commentSlider = document.getElementById('commentSlider');
@@ -275,4 +353,3 @@ document.getElementById("scrollToTopBtn").addEventListener("click", () => {
         behavior: "smooth",
     });
 });
-document.head.insertAdjacentHTML('beforeend', styles);
