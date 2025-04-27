@@ -13,7 +13,6 @@
 </head>
 
 <body>
-    <!-- Navbar -->
     <header>
         <nav class="bg-white shadow-md fixed top-0 w-full z-50">
             <div class="bg-green-600 py-2">
@@ -42,19 +41,19 @@
                     </div>
                     <ul id="nav-menu"
                         class="hidden lg:flex space-x-6 items-center text-sm font-medium transition-all duration-300">
-                        <li><a href="#" class="hover:text-black text-xs">HOME</a></li>
+                        <li><a href="home.html" class="hover:text-black text-xs">HOME</a></li>
                         <li class="relative group">
                             <a href="#" class="hover:text-black text-xs">SHOP</a>
                             <div
-                                class="absolute left-0 mt-2 w-32 bg-white border rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition duration-200 pointer-events-none group-hover:pointer-events-auto">
-                                <a href="shop.html" class="block px-4 py-2 text-xs hover:bg-green-700">Shop</a>
-                                <a href="#" class="block px-4 py-2 text-xs hover:bg-green-700">Wishlist</a>
-                                <a href="#" class="block px-4 py-2 text-xs hover:bg-green-700">Single Product</a>
-                                <a href="#" class="block px-4 py-2 text-xs hover:bg-green-700">Cart</a>
+                                class="absolute left-0 mt-2 w-32 bg-white border rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition duration pointer-events-none group-hover:pointer-events-auto">
+                                <a href="" class="block px-4 py-2 text-xs hover:bg-gray-100">Shop</a>
+                                <a href="#" class="block px-4 py-2 text-xs hover:bg-gray-100">Wishlist</a>
+                                <a href="#" class="block px-4 py-2 text-xs hover:bg-gray-100">Single Product</a>
+                                <a href="#" class="block px-4 py-2 text-xs hover:bg-gray-100">Cart</a>
                             </div>
                         </li>
-                        <li><a href="#" class="hover:text-black text-xs">ABOUT</a></li>
-                        <li><a href="#" class="hover:text-black text-xs">BLOG</a></li>
+                        <li><a href="about.html" class="hover:text-black text-xs">ABOUT</a></li>
+                        <li><a href="blog.html" class="hover:text-black text-xs">BLOG</a></li>
                         <li><a href="contact.html" class="hover:text-black text-xs">CONTACT</a></li>
                         <li>
                             <div id="cart-button" class="relative text-sm font-medium cursor-pointer">
@@ -67,6 +66,18 @@
                                 </div>
                             </div>
 
+                            <div id="heart-container" class="relative text-sm font-medium cursor-pointer">
+                                <i class="fa-solid fa-heart ml-3"></i>
+                                <span id="heart-count">[0]</span>
+                                <div id="heart-dropdown"
+                                    class="absolute right-0 mt-2 w-72 bg-white border rounded shadow-lg hidden z-50 p-3">
+                                    <div id="heart-items" class="space-y-2 text-xs"></div>
+                                    <div id="heart-total" class="text-right text-sm font-semibold mt-2 text-gray-800">
+                                        <span id="heart-total-count">0</span>
+                                    </div>
+                                </div>
+                            </div>
+
                         </li>
 
                     </ul>
@@ -74,16 +85,16 @@
             </div>
 
         </nav>
+
     </header>
+
     <main>
         <!-- slider -->
         <section class="relative w-full h-[80vh] overflow-hidden">
-
-            <div class=" mainSlider" id="slider">
+            <div class="mainSlider" id="slider">
                 <!-- Slide 1 -->
-                <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-100 slide">
+                <div class="absolute inset-0 duration-1000 ease-in-out opacity-100 slide">
                     <img src="img/fruit.jpg" class="w-full h-full object-cover" alt="Slide 1" />
-                    <div class="absolute inset-0"></div>
                     <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
                         <h1 class="text-4xl md:text-6xl font-bold mb-4">We serve Fresh Vegetables & Fruits</h1>
                         <h2 class="text-xl md:text-2xl mb-4">We deliver organic vegetables & fruits</h2>
@@ -93,9 +104,8 @@
                 </div>
 
                 <!-- Slide 2 -->
-                <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 slide">
+                <div class="absolute inset-0 duration-1000 ease-in-out opacity-0 slide">
                     <img src="img/download.jpg" class="w-full h-full object-cover" alt="Slide 2" />
-                    <div class="absolute inset-0"></div>
                     <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
                         <h1 class="text-4xl md:text-6xl font-bold mb-4">100% Fresh & Organic Foods</h1>
                         <h2 class="text-xl md:text-2xl mb-4">We deliver organic vegetables & fruits</h2>
@@ -107,7 +117,6 @@
         </section>
 
         <br><br><br>
-
         <!-- pictures main -->
         <section class="ftco-section ftco-category ftco-no-pt">
             <div class="container mx-auto">
@@ -132,11 +141,9 @@
                     <div class="col-span-1 md:col-span-1 flex justify-center relative">
                         <div class="flex justify-center items-center h-full">
                             <img src="img/3.jpg" alt="Vegetables" class="w-full h-full object-cover">
-
                             <div class="text text-center absolute inset-0 flex flex-col justify-start items-center p-4">
-
                                 <h2 class="text-green-600 italic font-serif text-xl">Vegetables</h2>
-                                <p class="text-gray-500	">Protect the health of every home</p>
+                                <p class="text-gray-500">Protect the health of every home</p>
                                 <br>
                                 <p>
                                     <a href="shop.html"
@@ -171,24 +178,21 @@
         <br><br><br>
         <!-- contact app.js -->
         <section>
-            <div class="container mx-auto p-6">
+            <div class="container mx-auto p-6 ">
                 <p class="text-lg font-serif text-green-600 text-center mb-6">Featured Products</p>
                 <h1 class="text-5xl font-bold text-center mb-6">Our Products</h1>
                 <p class="text-m text-gray-500 text-center mb-6">Far far away, behind the word mountains, far from the
                     countries Vokalia and Consonantia</p>
 
-                <div id="products-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-
+                <div id="products-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 ml-48">
                 </div>
             </div>
         </section>
-
 
         <section class="relative flex justify-center">
             <div class="w-full max-w-screen-xl relative">
                 <!-- img -->
                 <img src="img/lettuce.jpg" alt="" class="w-full h-auto object-cover lettuce rounded-lg">
-
 
                 <div class="absolute mb-15 top-24 right-24 w-1/3 p-6 text-white italic">
                     <div class="text-left mt-24">
@@ -206,21 +210,21 @@
                     </div>
 
                     <!-- time -->
-                    <div id="timer" class="mt-8 flex space-x-6">
-                        <div class="flex items-center space-x-2">
-                            <span class="text-3xl font-bold text-white" id="days"></span>
+                    <div id="timer" class="items-center mt-8 flex space-x-6 text-3xl font-bold text-white">
+                        <div class="space-x-2">
+                            <span id="days"></span>
                             <span class="text-xl text-gray-400">Days</span>
                         </div>
-                        <div class="flex items-center space-x-2">
-                            <span class="text-3xl font-bold text-white" id="hours"></span>
+                        <div class="space-x-2">
+                            <span id="hours"></span>
                             <span class="text-xl text-gray-400">Hours</span>
                         </div>
-                        <div class="flex items-center space-x-2">
-                            <span class="text-3xl font-bold text-white" id="minutes"></span>
+                        <div class="space-x-2">
+                            <span id="minutes"></span>
                             <span class="text-xl text-gray-400">Minutes</span>
                         </div>
-                        <div class="flex items-center space-x-2">
-                            <span class="text-3xl font-bold text-white" id="seconds"></span>
+                        <div class="space-x-2">
+                            <span id="seconds"></span>
                             <span class="text-xl text-gray-400">Seconds</span>
                         </div>
                     </div>
@@ -232,49 +236,37 @@
             <p class="text-lg font-serif text-green-600 text-center mb-3">Testimony</p>
             <h1 class="text-5xl font-bold text-center mb-6">Our satisfied customers say</h1>
             <p class="text-m text-gray-500 text-center mb-6">Far far away, behind the word mountains, there live the
-                blind
-                texts.</p>
-
+                blind texts.</p>
         </section>
 
-        <div class="mx-auto cursor pointer">
+        <div class="mx-auto cursor-pointer">
             <div class="slider w-full max-w-lg mx-auto overflow-hidden p-4 rounded-lg shadow-lg">
                 <div id="commentSlider" class="relative"></div>
             </div>
         </div>
 
-
         <br><br><br>
 
-
         <hr>
-        <section class="flex justify-center items-center p-24">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
-                <div class="flex justify-center flex-col items-center">
-                    <img src="img/partner-1.png" alt="Fotoğraf 1" class="w-[155px] h-[65px] object-cover">
+        <section class="flex p-24">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-24">
+                <div class="flex justify-center items-center">
+                    <img src="img/partner-1.png" alt="" class="w-[155px] h-[65px]">
                 </div>
-                <div class="flex justify-center flex-col items-center">
-                    <img src="img/partner-2.png" alt="Fotoğraf 2" class="w-[155px] h-[65px] object-cover">
+                <div class="flex justify-center items-center">
+                    <img src="img/partner-2.png" alt="" class="w-[155px] h-[65px]">
                 </div>
-
-                <div class="flex justify-center flex-col items-center">
-                    <img src="img/partner-3.png" alt="Fotoğraf 3" class="w-[155px] h-[65px] object-cover">
+                <div class="flex justify-center items-center">
+                    <img src="img/partner-3.png" alt="" class="w-[155px] h-[65px]">
                 </div>
-
-
-                <div class="flex justify-center flex-col items-center">
-                    <img src="img/partner-4.png" alt="Fotoğraf 4" class="w-[155px] h-[65px] object-cover">
-
+                <div class="flex justify-center items-center">
+                    <img src="img/partner-4.png" alt="" class="w-[155px] h-[65px]">
                 </div>
-
-
-                <div class="flex justify-center flex-col items-center">
-                    <img src="img/partner-5.png" alt="Fotoğraf 5" class="w-[155px] h-[65px] object-cover">
-
+                <div class="flex justify-center items-center">
+                    <img src="img/partner-5.png" alt="" class="w-[155px] h-[65px]">
                 </div>
             </div>
         </section>
-
 
         <!-- Newsletter Section -->
         <section class="newsletter-section bg-[#e6e3d8] p-12">
@@ -294,26 +286,22 @@
                         </button>
                     </div>
                 </div>
-                
-            </div>
 
-            <div class="flex justify-center mt-24">
-                <button id="scrollToTopBtn"
-                    class="bg-green-500 text-white w-12 h-12 rounded-full shadow hover:bg-green-600 transition"
-                    title="Yukarı Çık">
-                    <i class="fa-solid fa-arrow-up"></i>
-                </button>
-            </div>
+                <div class="flex justify-center mt-24">
+                    <button id="scrollToTopBtn"
+                        class="bg-green-500 text-white w-12 h-12 rounded-full shadow hover:bg-green-600 transition"
+                        title="Yukarı Çık">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </button>
+                </div>
             </div>
         </section>
-
-
     </main>
 
     <footer class="bg-[#ffff] text-white p-[50px] font-semibold">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 px-6">
             <!-- 1. colon -->
-            <div class="mb-10  font-serif">
+            <div class="mb-10 font-serif">
                 <h3 class="font-semibold mb-4 text-[19px] text-black">Vegefoods</h3>
                 <ul class="space-y-4">
                     <li class="text-black">
@@ -324,26 +312,20 @@
                         <i class="fa-brands fa-facebook text-black text-[24px] p-5 mt-14 cursor-pointer"></i>
                         <i class="fa-brands fa-instagram text-black text-[24px] p-5 mt-14 cursor-pointer"></i>
                     </li>
-                    <li class="flex space-x-4 mb-10">
-
-                    </li>
                 </ul>
             </div>
-
 
             <!-- 2. colon -->
             <div class="mb-24 font-serif">
                 <h3 class="text-[18px] text-black">Menu</h3>
                 <br>
-                <ul class="space-y-6 text-[16px] font-normal ">
+                <ul class="space-y-6 text-[16px] font-normal">
                     <li><a href="#" class="text-black">Shop</a></li>
                     <li><a href="#" class="text-black">About</a></li>
                     <li><a href="#" class="text-black">Journal</a></li>
                     <li><a href="#" class="text-black">Contact Us</a></li>
                 </ul>
             </div>
-
-
 
             <!-- 3. colon -->
             <div class="mb-24 font-serif">
@@ -370,7 +352,6 @@
                                     class="fa-solid fa-location-dot"></i></span>203 Fake St. Mountain View, San
                             Francisco,</a></li>
                 </ul>
-
             </div>
         </div>
 
@@ -381,9 +362,6 @@
         </div>
     </footer>
     <script src="app.js"></script>
-
-
-    
 </body>
 
 </html>

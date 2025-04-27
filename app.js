@@ -19,20 +19,20 @@ function updateCartUI() {
             totalPrice += itemPrice;
 
             cartItemsEl.innerHTML += `
-            <div class="flex items-center justify-between border-b pb-1" data-index="${index}">
-              <img src="${item.image}" class="w-10 h-10 object-cover rounded mr-2" />
-              <div class="flex-1 text-gray-800 text-xs">
-                ${item.name}<br>
-                <span class="text-green-600 font-semibold">$${itemPrice.toFixed(2)}</span>
-              </div>
-              <div class="flex items-center space-x-2">
-                <button data-action="decrease" class="px-2 py-1 text-xs bg-gray-200 rounded">-</button>
-                <span class="text-sm font-bold">${item.quantity}</span>
-                <button data-action="increase" class="px-2 py-1 text-xs bg-gray-200 rounded">+</button>
-                <button data-action="remove" class="px-2 py-1 text-xs bg-red-200 rounded">Delete</button>
-              </div>
-            </div>
-          `;
+                    <div class="flex items-center justify-between border-b pb-1" data-index="${index}">
+                    <img src="${item.image}" class="w-10 h-10 object-cover rounded mr-2" />
+                    <div class="flex-1 text-gray-800 text-xs">
+                        ${item.name}<br>
+                        <span class="text-green-600 font-semibold">$${itemPrice.toFixed(2)}</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button data-action="decrease" class="px-2 py-1 text-xs bg-gray-200 rounded">-</button>
+                        <span class="text-sm font-bold">${item.quantity}</span>
+                        <button data-action="increase" class="px-2 py-1 text-xs bg-gray-200 rounded">+</button>
+                        <button data-action="remove" class="px-2 py-1 text-xs bg-red-200 rounded">Delete</button>
+                    </div>
+                    </div>
+                `;
         });
 
         cartTotalEl.textContent = `Total: $${totalPrice.toFixed(2)}`;
@@ -82,49 +82,107 @@ document.addEventListener("DOMContentLoaded", () => {
     loadProducts();
 });
 
-async function loadProducts() {
+// async function loadProducts() {
+//     try {
+//         const response = await fetch("/product.json");
+//         const data = await response.json();
+//         const products = data.products.slice(0, data.products.length - 7);    // fazla cartları sildim
+//         const container = document.querySelector("#products-container");
+
+//         container.innerHTML = products.map(product => `
+//                             <div class="product-card relative rounded-lg shadow-sm hover:shadow-md overflow-hidden group">
+//                             ${product.discountedPrice ? `
+//                                 <span class="absolute top-2 left-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">
+//                                     SALE!
+//                                 </span>` : ''}
+
+//                             <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover product-image">
+
+//                             <div class="absolute inset-0 mt-16 flex justify-center items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
+//                                 <button class="w-9 h-9 rounded-full flex items-center justify-center shadow-md mt-20 group-hover:bg-green-500 group-hover:text-white transition-colors duration-300"
+//                                     onclick='addToCart(${JSON.stringify(product)})'>
+//                                     <i class="fa-solid fa-cart-shopping"></i>
+//                                 </button>
+//                                 <button class="w-9 h-9 rounded-full flex items-center justify-center shadow-md mt-20 group-hover:bg-green-500 group-hover:text-white transition-colors duration-300">
+//                                     <i class="fa-solid fa-heart"></i>
+//                                 </button>
+//                                 <button class="w-9 h-9 rounded-full flex items-center justify-center shadow-md mt-20 group-hover:bg-green-500 group-hover:text-white transition-colors duration-300">
+//                                     <i class="fa-solid fa-bars"></i>
+//                                 </button>
+//                             </div>
+//                         </div>
+
+//                     <div class="p-4">
+//                     <h3 class="text-lg font-semibold text-gray-800 mb-2">${product.name}</h3>
+//                     <p class="text-green-600 font-bold text-xl">$${product.discountedPrice || product.price}</p>
+//                     ${product.discountedPrice ? `<p class="text-gray-400 text-sm"><s>$${product.price}</s></p>` : ''}
+//                     </div>
+//                 </div>
+//                 `).join('');
+//     } catch (err) {
+//         console.error("Ürünler yüklenirken hata:", err);
+//     }
+// }
+async function loadProducts(category = "all") {
     try {
         const response = await fetch("/product.json");
+        // const products = data.products.slice(0, data.products.length - 7);
         const data = await response.json();
-        const products = data.products.slice(0, data.products.length - 7);
+        const filteredProducts = category === "all" ? data.products : data.products.filter(product => product.category === category);
+
         const container = document.querySelector("#products-container");
+        container.innerHTML = filteredProducts.map(product => `
+           <div class="product-card relative rounded-lg shadow-sm hover:shadow-md overflow-hidden group">
+                            ${product.discountedPrice ? `
+                                <span class="absolute top-2 left-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">
+                                    SALE!
+                                </span>` : ''}
 
-        container.innerHTML = products.map(product => `
-          <div class="product-card relative rounded-lg shadow-sm hover:shadow-md overflow-hidden">
-            ${product.discountedPrice ? `
-              <span class="absolute top-2 left-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">
-                SALE!
-              </span>` : ''}
+                            <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover product-image">
 
-            <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover product-image ">
+                            <div class="absolute inset-0 mt-16 flex justify-center items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
+                                <button class="w-9 h-9 rounded-full flex items-center justify-center shadow-md mt-20 group-hover:bg-green-500 group-hover:text-white transition-colors duration-300"
+                                    onclick='addToCart(${JSON.stringify(product)})'>
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </button>
+                                <button class="w-9 h-9 rounded-full flex items-center justify-center shadow-md mt-20 group-hover:bg-green-500 group-hover:text-white transition-colors duration-300">
+                                    <i class="fa-solid fa-heart"></i>
+                                </button>
+                                <button class="w-9 h-9 rounded-full flex items-center justify-center shadow-md mt-20 group-hover:bg-green-500 group-hover:text-white transition-colors duration-300">
+                                    <i class="fa-solid fa-bars"></i>
+                                </button>
+                            </div>
+                        </div>
 
-            <div class="absolute inset-0 flex justify-center items-center space-x-2">
-              <button class="icon-button w-9 h-9 rounded-full flex items-center justify-center shadow-md mt-20"
-                onclick='addToCart(${JSON.stringify(product)})'>
-                <i class="fa-solid fa-cart-shopping"></i>
-              </button>
-              <button class="icon-button w-9 h-9 rounded-full flex items-center justify-center shadow-md mt-20">
-                <i class="fa-solid fa-heart"></i>
-              </button>
-              <button class="icon-button w-9 h-9 rounded-full flex items-center justify-center shadow-md mt-20">
-                <i class="fa-solid fa-bars"></i>
-              </button>
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">${product.name}</h3>
+                    <p class="text-green-600 font-bold text-xl">$${product.discountedPrice || product.price}</p>
+                    ${product.discountedPrice ? `<p class="text-gray-400 text-sm"><s>$${product.price}</s></p>` : ''}
+                </div>
             </div>
-
-            <div class="p-4">
-              <h3 class="text-lg font-semibold text-gray-800 mb-2">${product.name}</h3>
-              <p class="text-green-600 font-bold text-xl">$${product.discountedPrice || product.price}</p>
-              ${product.discountedPrice ? `<p class="text-gray-400 text-sm"><s>$${product.price}</s></p>` : ''}
-            </div>
-          </div>
         `).join('');
     } catch (err) {
         console.error("Ürünler yüklenirken hata:", err);
     }
+}
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector("#categoryButtons").addEventListener("click", (event) => {
+        if (!event.target.classList.contains("category-btn")) return;
+
+        const category = event.target.getAttribute("data-category");
+        if (category) {
+            const buttons = document.querySelectorAll(".category-btn");
+            buttons.forEach(btn => btn.classList.remove("bg-green-500", "text-white"));
+
+            event.target.classList.add("bg-green-500", "text-white");
+
+            loadProducts(category);
+        }
+    });
+});
 
 
-
-} class CommentSlider {
+class CommentSlider {
     constructor() {
         this.currentIndex = 0;
         this.commentSlider = document.getElementById('commentSlider');
@@ -138,78 +196,77 @@ async function loadProducts() {
             const comments = data.comments;
 
             this.commentSlider.innerHTML = comments.map((comment, index) => `
-                <div class="slide ${index === 0 ? '' : 'hidden'} transition-all duration-500">
-                    <div class="comment-content fade-in p-6">
-                        <div class="flex items-center gap-8 bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
-                            <!-- Sol Taraf - Profil Bilgileri -->
-                            <div class="w-1/3 border-r border-gray-100 pr-8">
-                                <div class="relative mb-4">
-                                    <div class="absolute inset-0 bg-gradient-to-r from-green-200 to-green-100 rounded-full opacity-20 blur-lg"></div>
-                                    <img src="${comment.userImage}" 
-                                         alt="${comment.userName}" 
-                                         class="w-20 h-20 rounded-full object-cover mx-auto border-4 border-white shadow-md relative z-10">
-                                </div>
-                                
-                                <h3 class="font-bold text-xl text-gray-800 mb-2 text-center">${comment.userName}</h3>
-                                
-                                <div class="flex justify-center gap-1 mb-3">
-                                    ${this.generateStars(comment.rating)}
-                                </div>
-                                
-                                <div class="text-green-600 text-sm font-medium text-center">
-                                    ${this.getRatingText(comment.rating)}
-                                </div>
-
-                                <div class="flex justify-center gap-4 mt-4 pt-4 border-t border-gray-50">
-                                    <div class="text-center">
-                                        <div class="text-2xl font-bold text-gray-700">${comment.likes}</div>
-                                        <div class="text-xs text-gray-400">Likes</div>
+                    <div class="slide ${index === 0 ? '' : 'hidden'} transition-all duration-500">
+                        <div class="comment-content fade-in p-6">
+                            <div class="flex items-center gap-8 bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">            
+                                <div class="w-1/3 border-r border-gray-100 pr-8">
+                                    <div class="relative mb-4">
+                                        <div class="absolute inset-0 bg-gradient-to-r from-green-200 to-green-100 rounded-full opacity-20 blur-lg"></div>
+                                        <img src="${comment.userImage}" 
+                                            alt="${comment.userName}" 
+                                            class="w-20 h-20 rounded-full object-cover mx-auto border-4 border-white shadow-md relative z-10">
                                     </div>
-                                    <div class="text-center">
-                                        <div class="text-2xl font-bold text-gray-700">${comment.replies || 5}</div>
-                                        <div class="text-xs text-gray-400">Replies</div>
+                                    
+                                    <h3 class="font-bold text-xl text-gray-800 mb-2 text-center">${comment.userName}</h3>
+                                    
+                                    <div class="flex justify-center gap-1 mb-3">
+                                        ${this.generateStars(comment.rating)}
+                                    </div>
+                                    
+                                    <div class="text-green-600 text-sm font-medium text-center">
+                                        ${this.getRatingText(comment.rating)}
+                                    </div>
+
+                                    <div class="flex justify-center gap-4 mt-4 pt-4 border-t border-gray-50">
+                                        <div class="text-center">
+                                            <div class="text-2xl font-bold text-gray-700">${comment.likes}</div>
+                                            <div class="text-xs text-gray-400">Likes</div>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="text-2xl font-bold text-gray-700">${comment.replies || 5}</div>
+                                            <div class="text-xs text-gray-400">Replies</div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                          
-                            <div class="w-2/3 pl-8 relative">
-                                <div class="absolute top-0 left-6 text-4xl text-green-100 opacity-50">
-                                    <i class="fas fa-quote-left"></i>
-                                </div>
-                                
-                                <p class="text-gray-600 text-lg leading-relaxed relative z-10 mb-6">
-                                    ${comment.content}
-                                </p>
+                            
+                                <div class="w-2/3 pl-8 relative">
+                                    <div class="absolute top-0 left-6 text-4xl text-green-100 opacity-50">
+                                        <i class="fas fa-quote-left"></i>
+                                    </div>
+                                    
+                                    <p class="text-gray-600 text-lg leading-relaxed relative z-10 mb-6">
+                                        ${comment.content}
+                                    </p>
 
-                                <div class="flex items-center gap-2 text-sm text-gray-400">
-                                    <i class="fas fa-clock"></i>
-                                    <span>Posted ${comment.date || '2 days ago'}</span>
-                                </div>
+                                    <div class="flex items-center gap-2 text-sm text-gray-400">
+                                        <i class="fas fa-clock"></i>
+                                        <span>Posted ${comment.date || '2 days ago'}</span>
+                                    </div>
 
-                                <div class="absolute bottom-0 right-0 flex gap-2">
-                                    <button class="review-action-btn bg-red-50 text-red-500">
-                                        <i class="fas fa-heart"></i>
-                                    </button>
-                                    <button class="review-action-btn bg-gray-50 text-gray-500">
-                                        <i class="fas fa-share"></i>
-                                    </button>
+                                    <div class="absolute bottom-0 right-0 flex gap-2">
+                                        <button class="review-action-btn bg-red-50 text-red-500">
+                                            <i class="fas fa-heart"></i>
+                                        </button>
+                                        <button class="review-action-btn bg-gray-50 text-gray-500">
+                                            <i class="fas fa-share"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            `).join('');
+                `).join('');
             const controlsHTML = `
-                <div class="slider-controls flex items-center justify-center gap-6 mt-6">
-                    <button id="prevBtn" class="nav-btn group">
-                        <i class="fas fa-chevron-left group-hover:-translate-x-1 transition-transform"></i>
-                    </button>
-                    <button id="nextBtn" class="nav-btn group">
-                        <i class="fas fa-chevron-right group-hover:translate-x-1 transition-transform"></i>
-                    </button>
-                </div>
-            `;
+                    <div class="slider-controls flex items-center justify-center gap-6 mt-6">
+                        <button id="prevBtn" class="nav-btn group">
+                            <i class="fas fa-chevron-left group-hover:-translate-x-1 transition-transform"></i>
+                        </button>
+                        <button id="nextBtn" class="nav-btn group">
+                            <i class="fas fa-chevron-right group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                `;
 
             this.commentSlider.insertAdjacentHTML('afterend', controlsHTML);
             this.setupControls();
@@ -222,9 +279,9 @@ async function loadProducts() {
 
     generateStars(rating) {
         return Array(5).fill().map((_, i) => `
-            <i class="fas fa-star ${i < rating ? 'text-yellow-400' : 'text-gray-200'} 
-               text-xl transform transition-transform hover:scale-110 duration-300"></i>
-        `).join('');
+                <i class="fas fa-star ${i < rating ? 'text-yellow-400' : 'text-gray-200'} 
+                text-xl transform transition-transform hover:scale-110 duration-300"></i>
+            `).join('');
     }
 
     getRatingText(rating) {
@@ -347,9 +404,51 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
 });
 
-document.getElementById("scrollToTopBtn").addEventListener("click", () => {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth",
+// document.getElementById("scrollToTopBtn").addEventListener("click", () => {
+//     window.scrollTo({
+//         top: 0,
+//         behavior: "smooth",
+//     });
+// });
+
+// favorite product
+
+
+
+// customer counter
+const counters = document.querySelectorAll(".counter");
+
+const options = {
+    threshold: 0.5,
+};
+
+const runCounter = (counter) => {
+    const target = +counter.getAttribute("data-target");
+    const duration = 7000; // toplam süresi ms cinsinden
+    const stepTime = 10;
+    let count = 0;
+    const increment = target / (duration / stepTime);
+
+    const interval = setInterval(() => {
+        count += increment;
+        if (count >= target) {
+            counter.textContent = target.toLocaleString();
+            clearInterval(interval);
+        } else {
+            counter.textContent = Math.floor(count).toLocaleString();
+        }
+    }, stepTime);
+};
+
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            runCounter(entry.target);
+            observer.unobserve(entry.target); // bir kez çalışsın
+        }
     });
+}, options);
+
+counters.forEach(counter => {
+    observer.observe(counter);
 });
