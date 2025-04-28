@@ -51,7 +51,7 @@
                             <a href="#" class="hover:text-black text-xs">SHOP</a>
                             <div
                                 class="absolute left-0 mt-2 w-32 bg-white border rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition duration pointer-events-none group-hover:pointer-events-auto">
-                                <a href="" class="block px-4 py-2 text-xs hover:bg-gray-100">Shop</a>
+                                <a href="shop.html" class="block px-4 py-2 text-xs hover:bg-gray-100">Shop</a>
                                 <a href="#" class="block px-4 py-2 text-xs hover:bg-gray-100">Wishlist</a>
                                 <a href="#" class="block px-4 py-2 text-xs hover:bg-gray-100">Single Product</a>
                                 <a href="#" class="block px-4 py-2 text-xs hover:bg-gray-100">Cart</a>
@@ -71,17 +71,20 @@
                                 </div>
                             </div>
 
-                            <div id="heart-container" class="relative text-sm font-medium cursor-pointer">
-                                <i class="fa-solid fa-heart ml-3"></i>
-                                <span id="heart-count">[0]</span>
-                                <div id="heart-dropdown"
-                                    class="absolute right-0 mt-2 w-72 bg-white border rounded shadow-lg hidden z-50 p-3">
-                                    <div id="heart-items" class="space-y-2 text-xs"></div>
-                                    <div id="heart-total" class="text-right text-sm font-semibold mt-2 text-gray-800">
-                                        <span id="heart-total-count">0</span>
-                                    </div>
+                            <div class="relative">
+                                <button id="favorites-button" class="relative ml-2">
+                                    <i class="fa-solid fa-heart fa-md"></i> <span id="cart-count">[0]</span>
+                                  
+                                </button>
+                              
+                                <div id="favorites-panel" class="hidden absolute right-0 mt-2 w-64 bg-white border shadow-lg rounded-lg p-4 z-50">
+                                  <h3 class="text-lg font-semibold mb-2">Favorites</h3>
+                                  <ul id="favorites-list" class="text-sm space-y-2">
+                                    <li class="text-gray-400">No favorites yet.</li>
+                                  </ul>
                                 </div>
-                            </div>
+                              </div>
+                              
 
                         </li>
 
@@ -104,394 +107,443 @@
 
                 </div>
             </div>
-        </section>      
-
-
-
-<!-- right side -->
-<section class="py-10">
-    <div class="max-w-7xl mx-auto">
-        <div class="flex flex-col lg:flex-row-reverse gap-6 items-start">
-        
-      
-            <div class="w-full lg:w-[25%]">
-                <div class=" rounded-lg p-4">
-                    <h3 class="text-xl font-semibold mb-4 cursor-pointer">Categories</h3>
-                    <ul>
-                        <li class="flex justify-between text-lg p-2 cursor-pointer hover:bg-green-600 hover:text-white active:bg-green-800 active:text-white">
-                            Vegetables <span class="text-gray-400">(12)</span>
-                        </li>
-                        <hr>
-                        <li class="flex justify-between text-lg p-2 cursor-pointer hover:bg-green-600 hover:text-white active:bg-green-800 active:text-white">
-                            Fruits <span class="text-gray-400">(22)</span>
-                        </li>
-                        <hr>
-                        <li class="flex justify-between text-lg p-2 cursor-pointer hover:bg-green-600 hover:text-white active:bg-green-800 active:text-white">
-                            Juice <span class="text-gray-400">(37)</span>
-                        </li>
-                        <hr>
-                        <li class="flex justify-between text-lg p-2 cursor-pointer hover:bg-green-600 hover:text-white active:bg-green-800 active:text-white">
-                            Dries <span class="text-gray-400">(42)</span>
-                        </li>
-                    </ul>
-                    
-                    <br><br><br>
-                    <h3 class="text-lg font-semibold mb-9">Recent Blog</h3>
-                    <ul>
-                        <li class="flex items-center mb-4">
-                            <div class="w-56 h-24 mr-4">
-                                <img src="img/bezelye.jpg" alt="Blog 1" class="w-full h-full object-cover rounded cursor-pointer">
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold mb-5">Even the all-powerful Pointing has no control about the blind texts</p>
-                                <span class="text-xs text-gray-600">July 09, 2025 <i class="fa-regular fa-message fa-1xs"></i></span>
-                            </div>
-                        </li>
-                        <li class="flex items-center mb-4">
-                            <div class="w-56 h-24 mr-4">
-                                <img src="img/knife.jpg" alt="Blog 2" class="w-full h-full object-cover rounded cursor-pointer">
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold mb-5">Even the all-powerful Pointing has no control about the blind texts</p>
-                                <span class="text-xs text-gray-600">April 09, 2025  <i class="fa-regular fa-message fa-1xs"></i></span>
-                            </div>
-                        </li>
-                        <li class="flex items-center">
-                            <div class="w-56 h-24 mr-4">
-                                <img src="img/SALATA.jpg" alt="Blog 3" class="w-full h-full object-cover rounded cursor-pointer">
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold mb-5">Even the all-powerful Pointing has no control about the blind texts</p>
-                                <span class="text-xs text-gray-600">March 09, 2025  <i class="fa-regular fa-message fa-1xs"></i></span>
-                            </div>
-                        </li>
-                    </ul>
-                    
-                    <h3 class="text-lg font-semibold mt-24">Tag Cloud</h3>
-                    <br>
-                 <div class="">   <ul class="flex flex-wrap gap-2 text-sm">
-                    <li class="bg-white border p-2 rounded-sm cursor-pointer flex-1 text-center hover:bg-green-600 hover:text-white active:bg-green-700 active:text-white" id="item8">
-                        fruits
-                    </li>
-                    <li class="bg-white border p-2 rounded-sm cursor-pointer flex-1 text-center hover:bg-green-600 hover:text-white active:bg-green-700 active:text-white" id="item8">
-                        tomato
-                    </li>
-                    <li class="bg-white border p-2 rounded-sm cursor-pointer flex-1 text-center hover:bg-green-600 hover:text-white active:bg-green-700 active:text-white" id="item8">
-                        mango
-                    </li>
-                    <li class="bg-white border p-2 rounded-sm cursor-pointer flex-1 text-center hover:bg-green-600 hover:text-white active:bg-green-700 active:text-white" id="item8">
-                        apple
-                    </li>
-                    <li class="bg-white border p-2 rounded-sm cursor-pointer flex-1 text-center hover:bg-green-600 hover:text-white active:bg-green-700 active:text-white" id="item8">
-                        carrots
-                    </li>
-                    <li class="bg-white border p-2 rounded-sm cursor-pointer flex-1 text-center hover:bg-green-600 hover:text-white active:bg-green-700 active:text-white" id="item8">
-                        orange
-                    </li>
-                    <li class="bg-white border p-2 rounded-sm cursor-pointer flex-1 text-center hover:bg-green-600 hover:text-white active:bg-green-700 active:text-white" id="item8">
-                        pepper
-                    </li>
-                </ul></div>
-                    <br><br>
-                <div class="">
-                        <h3 class="mb-3 text-3xl font-semibold text-gray-800">The Joy of Fresh Salads</h3>
-                        
-                   <p class="text-gray-500"> Salads are more than just a side dish—they’re a vibrant mix of flavors, textures, and essential nutrients. With a combination of fresh greens, crunchy veggies, and tangy dressings, salads are the perfect way to pack in a variety of vitamins and minerals.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Main Content -->
-        
-
-        <!-- all blog -->
-       <div>
-        <section class="py-10">
-            <div class="max-w-7xl mx-auto">
-                <div class="flex flex-col lg:flex-row gap-6 items-stretch">
-
-                    <div class="w-full lg:w-[25%] h-64">
-                        <img src="img/SALATA.jpg" alt="Contact"
-                            class="w-full h-full object-cover rounded-lg cursor-pointer" />
-                    </div>
-
-                    <div class="w-full lg:w-[65%] h-auto ">
-                        <div class="ml-6">
-                            <div>
-                                <span class="cursor-pointer text-sm">July 20.2025  Admin   <span class="ml-1 text-md text-gray-600 hover:text-black transition-colors duration-400"><i class="fa-regular fa-message fa-2xs"></i> 3</span></span>
-                                <br><br>
-                                <h1 class="text-2xl font-semibold text-gray-800 mb-9">Even the all-powerful Pointing has no <br> control about the blind texts</h1>
-                                <p class="text-gray-600 mt-2">
-                                    Far far away, behind the word mountains, far from the <br> countries Vokalia and Consonantia, there live the blind <br> texts.
-                                </p>
-                                <a href="">
-                                    <button id="subscribeBtn"
-                                        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-3xl mt-5 font-medium transition-colors duration-300">
-                                        Read More
-                                    </button>
-                                </a>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-        </section>
-        <section class="py-10">
-            <div class="max-w-7xl mx-auto">
-                <div class="flex flex-col lg:flex-row gap-6 items-stretch">
-
-                    <div class="w-full lg:w-[25%] h-64">
-                        <img src="img/bezelye.jpg" alt="Contact"
-                            class="w-full h-full object-cover rounded-lg cursor-pointer" />
-                    </div>
-
-                    <div class="w-full lg:w-[65%] h-auto ">
-                        <div class="ml-6">
-                            <div>
-                                <span class="cursor-pointer text-sm">July 20.2025  Admin   <span class="ml-1 text-md text-gray-600 hover:text-black transition-colors duration-400"><i class="fa-regular fa-message fa-2xs"></i> 3</span></span>
-                                <br><br>
-                                <h1 class="text-2xl font-semibold text-gray-800 mb-9">Even the all-powerful Pointing has no <br> control about the blind texts</h1>
-                                <p class="text-gray-600 mt-2">
-                                    Far far away, behind the word mountains, far from the <br> countries Vokalia and Consonantia, there live the blind <br> texts.
-                                </p>
-                                <a href="">
-                                    <button id="subscribeBtn"
-                                        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-3xl mt-5 font-medium transition-colors duration-300">
-                                        Read More
-                                    </button>
-                                </a>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-        </section>
-
-
-        <section class="py-10">
-            <div class="max-w-7xl mx-auto">
-                <div class="flex flex-col lg:flex-row gap-6 items-stretch">
-
-                    <div class="w-full lg:w-[25%] h-64">
-                        <img src="img/knife.jpg" alt="Contact"
-                            class="w-full h-full object-cover rounded-lg cursor-pointer" />
-                    </div>
-
-                    <div class="w-full lg:w-[65%] h-auto ">
-                        <div class="ml-6">
-                            <div>
-                                <span class="cursor-pointer text-sm">July 20.2025  Admin   <span class="ml-1 text-md text-gray-600 hover:text-black transition-colors duration-400"><i class="fa-regular fa-message fa-2xs"></i> 3</span></span>
-                                <br><br>
-                                <h1 class="text-2xl font-semibold text-gray-800 mb-9">Even the all-powerful Pointing has no <br> control about the blind texts</h1>
-                                <p class="text-gray-600 mt-2">
-                                    Far far away, behind the word mountains, far from the <br> countries Vokalia and Consonantia, there live the blind <br> texts.
-                                </p>
-                                <a href="">
-                                    <button id="subscribeBtn"
-                                        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-3xl mt-5 font-medium transition-colors duration-300">
-                                        Read More
-                                    </button>
-                                </a>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-        </section>
-
-
-        <section class="py-10">
-            <div class="max-w-7xl mx-auto">
-                <div class="flex flex-col lg:flex-row gap-6 items-stretch">
-
-                    <div class="w-full lg:w-[25%] h-64">
-                        <img src="img/foods.jpg" alt="Contact"
-                            class="w-full h-full object-cover rounded-lg cursor-pointer" />
-                    </div>
-
-                    <div class="w-full lg:w-[65%] h-auto ">
-                        <div class="ml-6">
-                            <div>
-                                <span class="cursor-pointer text-sm">July 20.2025  Admin   <span class="ml-1 text-md text-gray-600 hover:text-black transition-colors duration-400"><i class="fa-regular fa-message fa-2xs"></i> 3</span></span>
-                                <br><br>
-                                <h1 class="text-2xl font-semibold text-gray-800 mb-9">Even the all-powerful Pointing has no <br> control about the blind texts</h1>
-                                <p class="text-gray-600 mt-2">
-                                    Far far away, behind the word mountains, far from the <br> countries Vokalia and Consonantia, there live the blind <br> texts.
-                                </p>
-                                <a href="">
-                                    <button id="subscribeBtn"
-                                        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-3xl mt-5 font-medium transition-colors duration-300">
-                                        Read More
-                                    </button>
-                                </a>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-        </section>
-
-
-        <section class="py-10">
-            <div class="max-w-7xl mx-auto">
-                <div class="flex flex-col lg:flex-row gap-6 items-stretch">
-
-                    <div class="w-full lg:w-[25%] h-64">
-                        <img src="img/delicous.jpg" alt="Contact"
-                            class="w-full h-full object-cover rounded-lg cursor-pointer" />
-                    </div>
-
-                    <div class="w-full lg:w-[65%] h-auto ">
-                        <div class="ml-6">
-                            <div>
-                                <span class="cursor-pointer text-sm">July 20.2025  Admin   <span class="ml-1 text-md text-gray-600 hover:text-black transition-colors duration-400"><i class="fa-regular fa-message fa-2xs"></i> 3</span></span>
-                                <br><br>
-                                <h1 class="text-2xl font-semibold text-gray-800 mb-9">Even the all-powerful Pointing has no <br> control about the blind texts</h1>
-                                <p class="text-gray-600 mt-2">
-                                    Far far away, behind the word mountains, far from the <br> countries Vokalia and Consonantia, there live the blind <br> texts.
-                                </p>
-                                <a href="">
-                                    <button id="subscribeBtn"
-                                        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-3xl mt-5 font-medium transition-colors duration-300">
-                                        Read More
-                                    </button>
-                                </a>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
         </section>
 
 
 
+        <!-- right side -->
         <section class="py-10">
             <div class="max-w-7xl mx-auto">
-                <div class="flex flex-col lg:flex-row gap-6 items-stretch">
+                <div class="flex flex-col lg:flex-row-reverse gap-6 items-start">
 
-                    <div class="w-full lg:w-[25%] h-64">
-                        <img src="img/çift.jpg  " alt="Contact"
-                            class="w-full h-full object-cover rounded-lg cursor-pointer" />
-                    </div>
 
-                    <div class="w-full lg:w-[65%] h-auto ">
-                        <div class="ml-6">
-                            <div>
-                                <span class="cursor-pointer text-sm">July 20.2025  Admin   <span class="ml-1 text-md text-gray-600 hover:text-black transition-colors duration-400"><i class="fa-regular fa-message fa-2xs"></i> 3</span></span>
-                                <br><br>
-                                <h1 class="text-2xl font-semibold text-gray-800 mb-9">Even the all-powerful Pointing has no <br> control about the blind texts</h1>
-                                <p class="text-gray-600 mt-2">
-                                    Far far away, behind the word mountains, far from the <br> countries Vokalia and Consonantia, there live the blind <br> texts.
-                                </p>
-                                <a href="">
-                                    <button id="subscribeBtn"
-                                        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-3xl mt-5 font-medium transition-colors duration-300">
-                                        Read More
-                                    </button>
-                                </a>
+                    <div class="w-full lg:w-[25%]">
+                        <div class=" rounded-lg p-4">
+                            <h3 class="text-xl font-semibold mb-4 cursor-pointer">Categories</h3>
+                            <ul>
+                                <li
+                                    class="flex justify-between text-lg p-2 cursor-pointer hover:bg-green-600 hover:text-white active:bg-green-800 active:text-white">
+                                    Vegetables <span class="text-gray-400">(12)</span>
+                                </li>
+                                <hr>
+                                <li
+                                    class="flex justify-between text-lg p-2 cursor-pointer hover:bg-green-600 hover:text-white active:bg-green-800 active:text-white">
+                                    Fruits <span class="text-gray-400">(22)</span>
+                                </li>
+                                <hr>
+                                <li
+                                    class="flex justify-between text-lg p-2 cursor-pointer hover:bg-green-600 hover:text-white active:bg-green-800 active:text-white">
+                                    Juice <span class="text-gray-400">(37)</span>
+                                </li>
+                                <hr>
+                                <li
+                                    class="flex justify-between text-lg p-2 cursor-pointer hover:bg-green-600 hover:text-white active:bg-green-800 active:text-white">
+                                    Dries <span class="text-gray-400">(42)</span>
+                                </li>
+                            </ul>
 
+                            <br><br><br>
+                            <h3 class="text-lg font-semibold mb-9">Recent Blog</h3>
+                            <ul>
+                                <li class="flex items-center mb-4">
+                                    <div class="w-56 h-24 mr-4">
+                                        <img src="img/bezelye.jpg" alt="Blog 1"
+                                            class="w-full h-full object-cover rounded cursor-pointer">
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-semibold mb-5">Even the all-powerful Pointing has no
+                                            control about the blind texts</p>
+                                        <span class="text-xs text-gray-600">July 09, 2025 <i
+                                                class="fa-regular fa-message fa-1xs"></i></span>
+                                    </div>
+                                </li>
+                                <li class="flex items-center mb-4">
+                                    <div class="w-56 h-24 mr-4">
+                                        <img src="img/knife.jpg" alt="Blog 2"
+                                            class="w-full h-full object-cover rounded cursor-pointer">
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-semibold mb-5">Even the all-powerful Pointing has no
+                                            control about the blind texts</p>
+                                        <span class="text-xs text-gray-600">April 09, 2025 <i
+                                                class="fa-regular fa-message fa-1xs"></i></span>
+                                    </div>
+                                </li>
+                                <li class="flex items-center">
+                                    <div class="w-56 h-24 mr-4">
+                                        <img src="img/SALATA.jpg" alt="Blog 3"
+                                            class="w-full h-full object-cover rounded cursor-pointer">
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-semibold mb-5">Even the all-powerful Pointing has no
+                                            control about the blind texts</p>
+                                        <span class="text-xs text-gray-600">March 09, 2025 <i
+                                                class="fa-regular fa-message fa-1xs"></i></span>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <h3 class="text-lg font-semibold mt-24">Tag Cloud</h3>
+                            <br>
+                            <div class="">
+                                <ul class="flex flex-wrap gap-2 text-sm">
+                                    <li class="bg-white border p-2 rounded-sm cursor-pointer flex-1 text-center hover:bg-green-600 hover:text-white active:bg-green-700 active:text-white"
+                                        id="item8">
+                                        fruits
+                                    </li>
+                                    <li class="bg-white border p-2 rounded-sm cursor-pointer flex-1 text-center hover:bg-green-600 hover:text-white active:bg-green-700 active:text-white"
+                                        id="item8">
+                                        tomato
+                                    </li>
+                                    <li class="bg-white border p-2 rounded-sm cursor-pointer flex-1 text-center hover:bg-green-600 hover:text-white active:bg-green-700 active:text-white"
+                                        id="item8">
+                                        mango
+                                    </li>
+                                    <li class="bg-white border p-2 rounded-sm cursor-pointer flex-1 text-center hover:bg-green-600 hover:text-white active:bg-green-700 active:text-white"
+                                        id="item8">
+                                        apple
+                                    </li>
+                                    <li class="bg-white border p-2 rounded-sm cursor-pointer flex-1 text-center hover:bg-green-600 hover:text-white active:bg-green-700 active:text-white"
+                                        id="item8">
+                                        carrots
+                                    </li>
+                                    <li class="bg-white border p-2 rounded-sm cursor-pointer flex-1 text-center hover:bg-green-600 hover:text-white active:bg-green-700 active:text-white"
+                                        id="item8">
+                                        orange
+                                    </li>
+                                    <li class="bg-white border p-2 rounded-sm cursor-pointer flex-1 text-center hover:bg-green-600 hover:text-white active:bg-green-700 active:text-white"
+                                        id="item8">
+                                        pepper
+                                    </li>
+                                </ul>
+                            </div>
+                            <br><br>
+                            <div class="">
+                                <h3 class="mb-3 text-3xl font-semibold text-gray-800">The Joy of Fresh Salads</h3>
+
+                                <p class="text-gray-500"> Salads are more than just a side dish—they’re a vibrant mix of
+                                    flavors, textures, and essential nutrients. With a combination of fresh greens,
+                                    crunchy veggies, and tangy dressings, salads are the perfect way to pack in a
+                                    variety of vitamins and minerals.</p>
                             </div>
                         </div>
                     </div>
 
-                    
-                </div>
-            </div>
-        </section>
+                    <!-- Main Content -->
 
-       </div>
+
+                    <!-- all blog -->
+                    <div>
+                        <section class="py-10">
+                            <div class="max-w-7xl mx-auto">
+                                <div class="flex flex-col lg:flex-row gap-6 items-stretch">
+
+                                    <div class="w-full lg:w-[25%] h-64">
+                                        <img src="img/SALATA.jpg" alt="Contact"
+                                            class="w-full h-full object-cover rounded-lg cursor-pointer" />
+                                    </div>
+
+                                    <div class="w-full lg:w-[65%] h-auto ">
+                                        <div class="ml-6">
+                                            <div>
+                                                <span class="cursor-pointer text-sm">July 20.2025 Admin <span
+                                                        class="ml-1 text-md text-gray-600 hover:text-black transition-colors duration-400"><i
+                                                            class="fa-regular fa-message fa-2xs"></i> 3</span></span>
+                                                <br><br>
+                                                <h1 class="text-2xl font-semibold text-gray-800 mb-9">Even the
+                                                    all-powerful Pointing has no <br> control about the blind texts</h1>
+                                                <p class="text-gray-600 mt-2">
+                                                    Far far away, behind the word mountains, far from the <br> countries
+                                                    Vokalia and Consonantia, there live the blind <br> texts.
+                                                </p>
+                                                <a href="">
+                                                    <button id="subscribeBtn"
+                                                        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-3xl mt-5 font-medium transition-colors duration-300">
+                                                        Read More
+                                                    </button>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </section>
+                        <section class="py-10">
+                            <div class="max-w-7xl mx-auto">
+                                <div class="flex flex-col lg:flex-row gap-6 items-stretch">
+
+                                    <div class="w-full lg:w-[25%] h-64">
+                                        <img src="img/bezelye.jpg" alt="Contact"
+                                            class="w-full h-full object-cover rounded-lg cursor-pointer" />
+                                    </div>
+
+                                    <div class="w-full lg:w-[65%] h-auto ">
+                                        <div class="ml-6">
+                                            <div>
+                                                <span class="cursor-pointer text-sm">July 20.2025 Admin <span
+                                                        class="ml-1 text-md text-gray-600 hover:text-black transition-colors duration-400"><i
+                                                            class="fa-regular fa-message fa-2xs"></i> 3</span></span>
+                                                <br><br>
+                                                <h1 class="text-2xl font-semibold text-gray-800 mb-9">Even the
+                                                    all-powerful Pointing has no <br> control about the blind texts</h1>
+                                                <p class="text-gray-600 mt-2">
+                                                    Far far away, behind the word mountains, far from the <br> countries
+                                                    Vokalia and Consonantia, there live the blind <br> texts.
+                                                </p>
+                                                <a href="">
+                                                    <button id="subscribeBtn"
+                                                        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-3xl mt-5 font-medium transition-colors duration-300">
+                                                        Read More
+                                                    </button>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </section>
+
+
+                        <section class="py-10">
+                            <div class="max-w-7xl mx-auto">
+                                <div class="flex flex-col lg:flex-row gap-6 items-stretch">
+
+                                    <div class="w-full lg:w-[25%] h-64">
+                                        <img src="img/knife.jpg" alt="Contact"
+                                            class="w-full h-full object-cover rounded-lg cursor-pointer" />
+                                    </div>
+
+                                    <div class="w-full lg:w-[65%] h-auto ">
+                                        <div class="ml-6">
+                                            <div>
+                                                <span class="cursor-pointer text-sm">July 20.2025 Admin <span
+                                                        class="ml-1 text-md text-gray-600 hover:text-black transition-colors duration-400"><i
+                                                            class="fa-regular fa-message fa-2xs"></i> 3</span></span>
+                                                <br><br>
+                                                <h1 class="text-2xl font-semibold text-gray-800 mb-9">Even the
+                                                    all-powerful Pointing has no <br> control about the blind texts</h1>
+                                                <p class="text-gray-600 mt-2">
+                                                    Far far away, behind the word mountains, far from the <br> countries
+                                                    Vokalia and Consonantia, there live the blind <br> texts.
+                                                </p>
+                                                <a href="">
+                                                    <button id="subscribeBtn"
+                                                        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-3xl mt-5 font-medium transition-colors duration-300">
+                                                        Read More
+                                                    </button>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </section>
+
+
+                        <section class="py-10">
+                            <div class="max-w-7xl mx-auto">
+                                <div class="flex flex-col lg:flex-row gap-6 items-stretch">
+
+                                    <div class="w-full lg:w-[25%] h-64">
+                                        <img src="img/foods.jpg" alt="Contact"
+                                            class="w-full h-full object-cover rounded-lg cursor-pointer" />
+                                    </div>
+
+                                    <div class="w-full lg:w-[65%] h-auto ">
+                                        <div class="ml-6">
+                                            <div>
+                                                <span class="cursor-pointer text-sm">July 20.2025 Admin <span
+                                                        class="ml-1 text-md text-gray-600 hover:text-black transition-colors duration-400"><i
+                                                            class="fa-regular fa-message fa-2xs"></i> 3</span></span>
+                                                <br><br>
+                                                <h1 class="text-2xl font-semibold text-gray-800 mb-9">Even the
+                                                    all-powerful Pointing has no <br> control about the blind texts</h1>
+                                                <p class="text-gray-600 mt-2">
+                                                    Far far away, behind the word mountains, far from the <br> countries
+                                                    Vokalia and Consonantia, there live the blind <br> texts.
+                                                </p>
+                                                <a href="">
+                                                    <button id="subscribeBtn"
+                                                        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-3xl mt-5 font-medium transition-colors duration-300">
+                                                        Read More
+                                                    </button>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </section>
+
+
+                        <section class="py-10">
+                            <div class="max-w-7xl mx-auto">
+                                <div class="flex flex-col lg:flex-row gap-6 items-stretch">
+
+                                    <div class="w-full lg:w-[25%] h-64">
+                                        <img src="img/delicous.jpg" alt="Contact"
+                                            class="w-full h-full object-cover rounded-lg cursor-pointer" />
+                                    </div>
+
+                                    <div class="w-full lg:w-[65%] h-auto ">
+                                        <div class="ml-6">
+                                            <div>
+                                                <span class="cursor-pointer text-sm">July 20.2025 Admin <span
+                                                        class="ml-1 text-md text-gray-600 hover:text-black transition-colors duration-400"><i
+                                                            class="fa-regular fa-message fa-2xs"></i> 3</span></span>
+                                                <br><br>
+                                                <h1 class="text-2xl font-semibold text-gray-800 mb-9">Even the
+                                                    all-powerful Pointing has no <br> control about the blind texts</h1>
+                                                <p class="text-gray-600 mt-2">
+                                                    Far far away, behind the word mountains, far from the <br> countries
+                                                    Vokalia and Consonantia, there live the blind <br> texts.
+                                                </p>
+                                                <a href="">
+                                                    <button id="subscribeBtn"
+                                                        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-3xl mt-5 font-medium transition-colors duration-300">
+                                                        Read More
+                                                    </button>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </section>
+
+
+
+                        <section class="py-10">
+                            <div class="max-w-7xl mx-auto">
+                                <div class="flex flex-col lg:flex-row gap-6 items-stretch">
+
+                                    <div class="w-full lg:w-[25%] h-64">
+                                        <img src="img/çift.jpg  " alt="Contact"
+                                            class="w-full h-full object-cover rounded-lg cursor-pointer" />
+                                    </div>
+
+                                    <div class="w-full lg:w-[65%] h-auto ">
+                                        <div class="ml-6">
+                                            <div>
+                                                <span class="cursor-pointer text-sm">July 20.2025 Admin <span
+                                                        class="ml-1 text-md text-gray-600 hover:text-black transition-colors duration-400"><i
+                                                            class="fa-regular fa-message fa-2xs"></i> 3</span></span>
+                                                <br><br>
+                                                <h1 class="text-2xl font-semibold text-gray-800 mb-9">Even the
+                                                    all-powerful Pointing has no <br> control about the blind texts</h1>
+                                                <p class="text-gray-600 mt-2">
+                                                    Far far away, behind the word mountains, far from the <br> countries
+                                                    Vokalia and Consonantia, there live the blind <br> texts.
+                                                </p>
+                                                <a href="">
+                                                    <button id="subscribeBtn"
+                                                        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-3xl mt-5 font-medium transition-colors duration-300">
+                                                        Read More
+                                                    </button>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
 
 
     </main>
-<hr>
+    <hr>
 
-<!-- footer -->
-<footer class="bg-[#ffff] text-white p-[50px] font-semibold">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 px-6">
-        <!-- 1. colon -->
-        <div class="mb-10  font-serif">
-            <h3 class="font-semibold mb-4 text-[19px] text-black">Vegefoods</h3>
-            <ul class="space-y-4">
-                <li class="text-black">
-                    Far far away, behind the word mountains, far from the <br> countries Vokalia and <br>
-                    Consonantia.
-                    <br>
-                    <i class="fa-solid fa-x text-black text-[24px] p-5 mt-14 "></i>
-                    <i class="fa-brands fa-facebook text-black text-[24px] p-5 mt-14 "></i>
-                    <i class="fa-brands fa-instagram text-black text-[24px] p-5 mt-14 "></i>
-                </li>
-                <li class="flex space-x-4 mb-10">
+    <!-- footer -->
+    <footer class="bg-[#ffff] text-white p-[50px] font-semibold">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 px-6">
+            <!-- 1. colon -->
+            <div class="mb-10  font-serif">
+                <h3 class="font-semibold mb-4 text-[19px] text-black">Vegefoods</h3>
+                <ul class="space-y-4">
+                    <li class="text-black">
+                        Far far away, behind the word mountains, far from the <br> countries Vokalia and <br>
+                        Consonantia.
+                        <br>
+                        <i class="fa-solid fa-x text-black text-[24px] p-5 mt-14 "></i>
+                        <i class="fa-brands fa-facebook text-black text-[24px] p-5 mt-14 "></i>
+                        <i class="fa-brands fa-instagram text-black text-[24px] p-5 mt-14 "></i>
+                    </li>
+                    <li class="flex space-x-4 mb-10">
 
-                </li>
-            </ul>
+                    </li>
+                </ul>
+            </div>
+
+
+            <!-- 2. colon -->
+            <div class="mb-24 font-serif">
+                <h3 class="text-[18px] text-black">Menu</h3>
+                <br>
+                <ul class="space-y-6 text-[16px] font-normal ">
+                    <li><a href="#" class="text-black">Shop</a></li>
+                    <li><a href="#" class="text-black">About</a></li>
+                    <li><a href="#" class="text-black">Journal</a></li>
+                    <li><a href="#" class="text-black">Contact Us</a></li>
+                </ul>
+            </div>
+
+
+
+            <!-- 3. colon -->
+            <div class="mb-24 font-serif">
+                <h3 class="font-semibold mb-4 text-[19px] text-black">Help</h3>
+                <ul class="space-y-6 text-[16px] font-normal">
+                    <li><a href="#" class="text-black">Web Development <span
+                                class="ml-6 text-[14px] font-serif">FAQs</span></a></li>
+                    <li><a href="#" class="text-black">App Development <span
+                                class="ml-6 text-[14px] font-serif">Contact</span></a></li>
+                    <li><a href="#" class="text-black">Marketing</a></li>
+                    <li><a href="#" class="text-black">Design</a></li>
+                </ul>
+            </div>
+
+            <!-- 4. colon -->
+            <div class="mb-32">
+                <h3 class="font-semibold mb-4 text-[19px] text-black">Have a Questions?</h3>
+                <ul class="space-y-6 text-[16px] font-normal">
+                    <li><a href="tel:+1234567890" class="text-black"><span class="mr-2"><i
+                                    class="fa-solid fa-phone"></i></span>+2 392 3929 210</a></li>
+                    <li><a href="mailto:someone@example.com" class="text-black"><span class="mr-2"><i
+                                    class="fa-solid fa-envelope"></i></span>yasinngeyik@gmail.com</a></li>
+                    <li><a href="#" class="text-black"><span class="mr-2"><i
+                                    class="fa-solid fa-location-dot"></i></span>203
+                            Fake St. Mountain View, San
+                            Francisco,</a></li>
+                </ul>
+
+            </div>
         </div>
 
-
-        <!-- 2. colon -->
-        <div class="mb-24 font-serif">
-            <h3 class="text-[18px] text-black">Menu</h3>
-            <br>
-            <ul class="space-y-6 text-[16px] font-normal ">
-                <li><a href="#" class="text-black">Shop</a></li>
-                <li><a href="#" class="text-black">About</a></li>
-                <li><a href="#" class="text-black">Journal</a></li>
-                <li><a href="#" class="text-black">Contact Us</a></li>
-            </ul>
+        <div class="text-center mt-8">
+            <p class="text-black text-sm">Copyright ©2025 All rights reserved This template is made with <span><i
+                        class="fa-solid fa-heart" style="color: #74C0FC;"></i></span> by <span
+                    class="text-green-600">Colorlib</span></p>
         </div>
-
-
-
-        <!-- 3. colon -->
-        <div class="mb-24 font-serif">
-            <h3 class="font-semibold mb-4 text-[19px] text-black">Help</h3>
-            <ul class="space-y-6 text-[16px] font-normal">
-                <li><a href="#" class="text-black">Web Development <span
-                            class="ml-6 text-[14px] font-serif">FAQs</span></a></li>
-                <li><a href="#" class="text-black">App Development <span
-                            class="ml-6 text-[14px] font-serif">Contact</span></a></li>
-                <li><a href="#" class="text-black">Marketing</a></li>
-                <li><a href="#" class="text-black">Design</a></li>
-            </ul>
-        </div>
-
-        <!-- 4. colon -->
-        <div class="mb-32">
-            <h3 class="font-semibold mb-4 text-[19px] text-black">Have a Questions?</h3>
-            <ul class="space-y-6 text-[16px] font-normal">
-                <li><a href="tel:+1234567890" class="text-black"><span class="mr-2"><i
-                                class="fa-solid fa-phone"></i></span>+2 392 3929 210</a></li>
-                <li><a href="mailto:someone@example.com" class="text-black"><span class="mr-2"><i
-                                class="fa-solid fa-envelope"></i></span>yasinngeyik@gmail.com</a></li>
-                <li><a href="#" class="text-black"><span class="mr-2"><i
-                                class="fa-solid fa-location-dot"></i></span>203
-                        Fake St. Mountain View, San
-                        Francisco,</a></li>
-            </ul>
-
-        </div>
-    </div>
-
-    <div class="text-center mt-8">
-        <p class="text-black text-sm">Copyright ©2025 All rights reserved This template is made with <span><i
-                    class="fa-solid fa-heart" style="color: #74C0FC;"></i></span> by <span
-                class="text-green-600">Colorlib</span></p>
-    </div>
-</footer>
+    </footer>
 
 
 

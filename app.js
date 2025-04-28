@@ -1,5 +1,4 @@
 const cart = [];
-
 function updateCartUI() {
     const countEl = document.querySelector("#cart-count");
     const cartItemsEl = document.querySelector("#cart-items");
@@ -10,7 +9,7 @@ function updateCartUI() {
     cartItemsEl.innerHTML = '';
 
     if (cart.length === 0) {
-        cartItemsEl.innerHTML = `<p class="text-gray-500 text-xs">Sepetiniz boş</p>`;
+        cartItemsEl.innerHTML = `<li class="text-gray-500 text-xs">Your cart is empty</li>`;
         cartTotalEl.textContent = "";
     } else {
         cart.forEach((item, index) => {
@@ -19,7 +18,7 @@ function updateCartUI() {
             totalPrice += itemPrice;
 
             cartItemsEl.innerHTML += `
-                    <div class="flex items-center justify-between border-b pb-1" data-index="${index}">
+                <div class="flex items-center justify-between border-b pb-1" data-index="${index}">
                     <img src="${item.image}" class="w-10 h-10 object-cover rounded mr-2" />
                     <div class="flex-1 text-gray-800 text-xs">
                         ${item.name}<br>
@@ -31,14 +30,26 @@ function updateCartUI() {
                         <button data-action="increase" class="px-2 py-1 text-xs bg-gray-200 rounded">+</button>
                         <button data-action="remove" class="px-2 py-1 text-xs bg-red-200 rounded">Delete</button>
                     </div>
-                    </div>
-                `;
+                </div>
+            `;
         });
 
         cartTotalEl.textContent = `Total: $${totalPrice.toFixed(2)}`;
     }
 
     countEl.textContent = `[${totalItems}]`;
+}
+
+function updateFavoritesUI() {
+    const favoritesCountEl = document.querySelector("#favorites-count");
+    const favoritesListEl = document.querySelector("#favorites-list");
+
+    favoritesListEl.innerHTML = favorites.length === 0 ?
+        `<li class="text-gray-400">No favorites yet.</li>` :
+        favorites.map(item => `
+            <li class="text-gray-800">${item.name}</li>
+        `).join('');
+    favoritesCountEl.textContent = `[${favorites.length}]`
 }
 
 // Event delegation for cart buttons
@@ -64,6 +75,7 @@ document.querySelector("#cart-items").addEventListener("click", function (e) {
     updateCartUI();
 });
 
+// Add product to cart
 function addToCart(product) {
     const existingIndex = cart.findIndex(item => item.id === product.id);
     if (existingIndex > -1) {
@@ -74,111 +86,113 @@ function addToCart(product) {
     updateCartUI();
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelector("#cart-button").addEventListener("click", () => {
-        document.querySelector("#mini-cart").classList.toggle("hidden");
-    });
+// Add favorite to cart
+const favorites = [];
 
-    loadProducts();
+// Favorilere ekleme işlemi
+function addToFavorites(product) {
+    if (!favorites.some(item => item.id === product.id)) {
+        favorites.push(product);
+        updateFavoritesUI();
+    }
+}
+function removeFromFavorites(productId) {
+    const index = favorites.findIndex(item => item.id === productId);
+    if (index > -1) {
+        favorites.splice(index, 1);
+        updateFavoritesUI();
+    }
+}
+
+function updateFavoritesUI() {
+    const favoritesCountEl = document.querySelector("#favorites-count");
+    const favoritesListEl = document.querySelector("#favorites-list");
+
+    if (favorites.length === 0) {
+        favoritesListEl.innerHTML = `<li class="text-gray-400">No favorites yet.</li>`;
+    } else {
+        favoritesListEl.innerHTML = favorites.map(item => `
+            <li class="flex items-center justify-between text-gray-800">
+                <img src="${item.image}" class="w-10 h-10 object-cover rounded mr-2" />
+                <span>${item.name}</span>
+                <button onclick="removeFromFavorites(${item.id})" class="text-red-500 ml-2">Remove</button>
+            </li>
+        `).join('');
+    }
+    favoritesCountEl.textContent = `[${favorites.length}]`;
+}
+
+
+document.querySelector("#favorites-button").addEventListener("click", () => {
+    document.querySelector("#favorites-panel").classList.toggle("hidden");
 });
 
-// async function loadProducts() {
-//     try {
-//         const response = await fetch("/product.json");
-//         const data = await response.json();
-//         const products = data.products.slice(0, data.products.length - 7);    // fazla cartları sildim
-//         const container = document.querySelector("#products-container");
+// Sepet butonuna tıklama
+document.querySelector("#cart-button").addEventListener("click", () => {
+    document.querySelector("#mini-cart").classList.toggle("hidden");
+});
 
-//         container.innerHTML = products.map(product => `
-//                             <div class="product-card relative rounded-lg shadow-sm hover:shadow-md overflow-hidden group">
-//                             ${product.discountedPrice ? `
-//                                 <span class="absolute top-2 left-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">
-//                                     SALE!
-//                                 </span>` : ''}
-
-//                             <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover product-image">
-
-//                             <div class="absolute inset-0 mt-16 flex justify-center items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
-//                                 <button class="w-9 h-9 rounded-full flex items-center justify-center shadow-md mt-20 group-hover:bg-green-500 group-hover:text-white transition-colors duration-300"
-//                                     onclick='addToCart(${JSON.stringify(product)})'>
-//                                     <i class="fa-solid fa-cart-shopping"></i>
-//                                 </button>
-//                                 <button class="w-9 h-9 rounded-full flex items-center justify-center shadow-md mt-20 group-hover:bg-green-500 group-hover:text-white transition-colors duration-300">
-//                                     <i class="fa-solid fa-heart"></i>
-//                                 </button>
-//                                 <button class="w-9 h-9 rounded-full flex items-center justify-center shadow-md mt-20 group-hover:bg-green-500 group-hover:text-white transition-colors duration-300">
-//                                     <i class="fa-solid fa-bars"></i>
-//                                 </button>
-//                             </div>
-//                         </div>
-
-//                     <div class="p-4">
-//                     <h3 class="text-lg font-semibold text-gray-800 mb-2">${product.name}</h3>
-//                     <p class="text-green-600 font-bold text-xl">$${product.discountedPrice || product.price}</p>
-//                     ${product.discountedPrice ? `<p class="text-gray-400 text-sm"><s>$${product.price}</s></p>` : ''}
-//                     </div>
-//                 </div>
-//                 `).join('');
-//     } catch (err) {
-//         console.error("Ürünler yüklenirken hata:", err);
-//     }
-// }
 async function loadProducts(category = "all") {
     try {
         const response = await fetch("/product.json");
-        // const products = data.products.slice(0, data.products.length - 7);
         const data = await response.json();
         const filteredProducts = category === "all" ? data.products : data.products.filter(product => product.category === category);
 
         const container = document.querySelector("#products-container");
         container.innerHTML = filteredProducts.map(product => `
-           <div class="product-card relative rounded-lg shadow-sm hover:shadow-md overflow-hidden group">
-                            ${product.discountedPrice ? `
-                                <span class="absolute top-2 left-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">
-                                    SALE!
-                                </span>` : ''}
-
-                            <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover product-image">
-
-                            <div class="absolute inset-0 mt-16 flex justify-center items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
-                                <button class="w-9 h-9 rounded-full flex items-center justify-center shadow-md mt-20 group-hover:bg-green-500 group-hover:text-white transition-colors duration-300"
-                                    onclick='addToCart(${JSON.stringify(product)})'>
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                </button>
-                                <button class="w-9 h-9 rounded-full flex items-center justify-center shadow-md mt-20 group-hover:bg-green-500 group-hover:text-white transition-colors duration-300">
-                                    <i class="fa-solid fa-heart"></i>
-                                </button>
-                                <button class="w-9 h-9 rounded-full flex items-center justify-center shadow-md mt-20 group-hover:bg-green-500 group-hover:text-white transition-colors duration-300">
-                                    <i class="fa-solid fa-bars"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                <div class="p-4">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">${product.name}</h3>
-                    <p class="text-green-600 font-bold text-xl">$${product.discountedPrice || product.price}</p>
-                    ${product.discountedPrice ? `<p class="text-gray-400 text-sm"><s>$${product.price}</s></p>` : ''}
+            <div class="product-card relative rounded-lg shadow-sm hover:shadow-md overflow-hidden group">
+                ${product.discountedPrice ? `
+                    <span class="absolute top-2 left-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">
+                        SALE!
+                    </span>` : ''}
+                <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover product-image">
+                <div class="absolute inset-0 mt-16 flex justify-center items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
+                    <button class="w-9 h-9 rounded-full flex items-center justify-center shadow-md mt-20 group-hover:bg-green-500 group-hover:text-white transition-colors duration-300"
+                        onclick='addToCart(${JSON.stringify(product)})'>
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </button>
+                    <button class="w-9 h-9 rounded-full flex items-center justify-center shadow-md mt-20 group-hover:bg-green-500 group-hover:text-white transition-colors duration-300"
+                        onclick='addToFavorites(${JSON.stringify(product)})'>
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+                    <button class="w-9 h-9 rounded-full flex items-center justify-center shadow-md mt-20 group-hover:bg-green-500 group-hover:text-white transition-colors duration-300">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
                 </div>
             </div>
-        `).join('');
+            <div class="p-4">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">${product.name}</h3>
+                <p class="text-green-600 font-bold text-xl">$${product.discountedPrice || product.price}</p>
+                ${product.discountedPrice ? `<p class="text-gray-400 text-sm"><s>$${product.price}</s></p>` : ''}
+            </div>
+        `).join('')
     } catch (err) {
         console.error("Ürünler yüklenirken hata:", err);
     }
 }
+
+// Sayfa yüklendiğinde ürünleri yükle
+document.addEventListener("DOMContentLoaded", () => {
+    loadProducts();
+});
+
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelector("#categoryButtons").addEventListener("click", (event) => {
-        if (!event.target.classList.contains("category-btn")) return;
+    if (document.querySelector("#categoryButtons")) {
+        document.querySelector("#categoryButtons").addEventListener("click", (event) => {
+            if (!event.target.classList.contains("category-btn")) return;
 
-        const category = event.target.getAttribute("data-category");
-        if (category) {
-            const buttons = document.querySelectorAll(".category-btn");
-            buttons.forEach(btn => btn.classList.remove("bg-green-500", "text-white"));
+            const category = event.target.getAttribute("data-category");
+            if (category) {
+                const buttons = document.querySelectorAll(".category-btn");
+                buttons.forEach(btn => btn.classList.remove("bg-green-500", "text-white"));
 
-            event.target.classList.add("bg-green-500", "text-white");
+                event.target.classList.add("bg-green-500", "text-white");
 
-            loadProducts(category);
-        }
-    });
+                loadProducts(category);
+            }
+        });
+    }
+
 });
 
 
@@ -403,17 +417,6 @@ document.addEventListener('DOMContentLoaded', () => {
     startTimer();
     initMobileMenu();
 });
-
-// document.getElementById("scrollToTopBtn").addEventListener("click", () => {
-//     window.scrollTo({
-//         top: 0,
-//         behavior: "smooth",
-//     });
-// });
-
-// favorite product
-
-
 
 // customer counter
 const counters = document.querySelectorAll(".counter");

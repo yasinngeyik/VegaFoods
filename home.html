@@ -46,7 +46,7 @@
                             <a href="#" class="hover:text-black text-xs">SHOP</a>
                             <div
                                 class="absolute left-0 mt-2 w-32 bg-white border rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition duration pointer-events-none group-hover:pointer-events-auto">
-                                <a href="" class="block px-4 py-2 text-xs hover:bg-gray-100">Shop</a>
+                                <a href="shop.html" class="block px-4 py-2 text-xs hover:bg-gray-100">Shop</a>
                                 <a href="#" class="block px-4 py-2 text-xs hover:bg-gray-100">Wishlist</a>
                                 <a href="#" class="block px-4 py-2 text-xs hover:bg-gray-100">Single Product</a>
                                 <a href="#" class="block px-4 py-2 text-xs hover:bg-gray-100">Cart</a>
@@ -59,24 +59,26 @@
                             <div id="cart-button" class="relative text-sm font-medium cursor-pointer">
                                 <i class="fa-solid fa-cart-shopping mr-1"></i> <span id="cart-count">[0]</span>
                                 <div id="mini-cart"
-                                    class="absolute right-0 mt-2 w-72 bg-white border rounded shadow-lg hidden z-50 p-3">
+                                    class="absolute right-0 mt-2 w-72 bg-white border rounded shadow-lg hidden z-50 p-3 mr-14">
                                     <div id="cart-items" class="space-y-2 text-xs"></div>
                                     <div id="cart-total" class="text-right text-sm font-semibold mt-2 text-gray-800">
                                     </div>
                                 </div>
                             </div>
 
-                            <div id="heart-container" class="relative text-sm font-medium cursor-pointer">
-                                <i class="fa-solid fa-heart ml-3"></i>
-                                <span id="heart-count">[0]</span>
-                                <div id="heart-dropdown"
-                                    class="absolute right-0 mt-2 w-72 bg-white border rounded shadow-lg hidden z-50 p-3">
-                                    <div id="heart-items" class="space-y-2 text-xs"></div>
-                                    <div id="heart-total" class="text-right text-sm font-semibold mt-2 text-gray-800">
-                                        <span id="heart-total-count">0</span>
-                                    </div>
+                            <div class="relative">
+                                <button id="favorites-button" class="relative ml-2">
+                                    <i class="fa-solid fa-heart fa-md"></i> <span id="favorites-count">[0]</span>
+                                  
+                                </button>
+                          
+                                <div id="favorites-panel" class="hidden absolute right-0 mt-2 w-64 bg-white border shadow-lg rounded-lg p-4 z-50 ml-24">
+                                  <h3 class="text-lg font-semibold mb-2">Favorites</h3>
+                                  <ul id="favorites-list" class="text-sm space-y-2">
+                                    <li class="text-gray-400">No favorites yet.</li>
+                                  </ul>
                                 </div>
-                            </div>
+                              </div>
 
                         </li>
 
@@ -178,12 +180,13 @@
         <br><br><br>
         <!-- contact app.js -->
         <section>
-            <div class="container mx-auto p-6 ">
-                <p class="text-lg font-serif text-green-600 text-center mb-6">Featured Products</p>
-                <h1 class="text-5xl font-bold text-center mb-6">Our Products</h1>
-                <p class="text-m text-gray-500 text-center mb-6">Far far away, behind the word mountains, far from the
-                    countries Vokalia and Consonantia</p>
-
+            <div class="flex-col mx-auto p-6 ">
+                <div class=""><p class="text-lg font-serif text-green-600 text-center mb-6">Featured Products</p>
+                    <h1 class="text-5xl font-bold text-center mb-6">Our Products</h1>
+                    <p class="text-m text-gray-500 text-center mb-6">Far far away, behind the word mountains, far from the
+                        countries Vokalia and Consonantia</p>
+    </div>
+                
                 <div id="products-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 ml-48">
                 </div>
             </div>
@@ -232,7 +235,7 @@
             </div>
         </section>
 
-        <section class="container mx-auto p-6">
+        <section class="mx-auto p-6">
             <p class="text-lg font-serif text-green-600 text-center mb-3">Testimony</p>
             <h1 class="text-5xl font-bold text-center mb-6">Our satisfied customers say</h1>
             <p class="text-m text-gray-500 text-center mb-6">Far far away, behind the word mountains, there live the

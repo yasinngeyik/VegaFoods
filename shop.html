@@ -66,17 +66,22 @@
                                 </div>
                             </div>
 
-                            <div id="heart-container" class="relative text-sm font-medium cursor-pointer">
-                                <i class="fa-solid fa-heart ml-3"></i>
-                                <span id="heart-count">[0]</span>
-                                <div id="heart-dropdown"
-                                    class="absolute right-0 mt-2 w-72 bg-white border rounded shadow-lg hidden z-50 p-3">
-                                    <div id="heart-items" class="space-y-2 text-xs"></div>
-                                    <div id="heart-total" class="text-right text-sm font-semibold mt-2 text-gray-800">
-                                        <span id="heart-total-count">0</span>
-                                    </div>
+                            <div class="relative">
+                                <button id="favorites-button" class="relative ml-2">
+                                    <i class="fa-solid fa-heart fa-md"></i> <span id="favorites-count">[0]</span>
+                                  
+                                </button>
+                              
+                                <div id="favorites-panel" class="hidden absolute right-0 mt-2 w-64 bg-white border shadow-lg rounded-lg p-4 z-50">
+                                  <h3 class="text-lg font-semibold mb-2">Favorites</h3>
+                                  <ul id="favorites-list" class="text-sm space-y-2">
+                                    <li class="text-gray-400">No favorites yet.</li>
+                                  </ul>
                                 </div>
-                            </div>
+                              </div>
+                              
+                               
+
 
                         </li>
 
