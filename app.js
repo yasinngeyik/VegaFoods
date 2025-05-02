@@ -88,8 +88,6 @@ function addToCart(product) {
 
 // Add favorite to cart
 const favorites = [];
-
-// Favorilere ekleme işlemi
 function addToFavorites(product) {
     if (!favorites.some(item => item.id === product.id)) {
         favorites.push(product);
@@ -115,7 +113,7 @@ function updateFavoritesUI() {
             <li class="flex items-center justify-between text-gray-800">
                 <img src="${item.image}" class="w-10 h-10 object-cover rounded mr-2" />
                 <span>${item.name}</span>
-                <button onclick="removeFromFavorites(${item.id})" class="text-red-500 ml-2">Remove</button>
+                <button onclick="removeFromFavorites(${item.id})" class="text-red-500 ml-2"><i class="fa-regular fa-trash-can fa-sm"></i></button>
             </li>
         `).join('');
     }
@@ -136,10 +134,12 @@ async function loadProducts(category = "all") {
     try {
         const response = await fetch("/product.json");
         const data = await response.json();
-        const filteredProducts = category === "all" ? data.products : data.products.filter(product => product.category === category);
 
+        // Kategoriyi filtrele
+        const filteredProducts = category === "all" ? data.products : data.products.filter(product => product.category === category);
+        const limitedProducts = filteredProducts.slice(0, 4);
         const container = document.querySelector("#products-container");
-        container.innerHTML = filteredProducts.map(product => `
+        container.innerHTML = limitedProducts.map(product => `
             <div class="product-card relative rounded-lg shadow-sm hover:shadow-md overflow-hidden group">
                 ${product.discountedPrice ? `
                     <span class="absolute top-2 left-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">
@@ -165,13 +165,14 @@ async function loadProducts(category = "all") {
                 <p class="text-green-600 font-bold text-xl">$${product.discountedPrice || product.price}</p>
                 ${product.discountedPrice ? `<p class="text-gray-400 text-sm"><s>$${product.price}</s></p>` : ''}
             </div>
-        `).join('')
+        `).join('');
     } catch (err) {
         console.error("Ürünler yüklenirken hata:", err);
     }
 }
 
-// Sayfa yüklendiğinde ürünleri yükle
+
+
 document.addEventListener("DOMContentLoaded", () => {
     loadProducts();
 });
