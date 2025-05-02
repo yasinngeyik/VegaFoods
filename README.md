@@ -30,6 +30,13 @@ Kullanıcıların kişisel ve ödeme bilgileri, güvenlik önlemleri ile korunur
 VegaFoods, kullanım kolaylığı sağlayan bir arayüze sahiptir. Ayrıca, sitenizi hızla devreye almanıza olanak tanır. Yapılandırma adımları basittir ve ek yazılım gerektirmez.
 
 
+
+
+
+
+
+
+
 ENG
 🛒 VegaFoods | Responsive E-Commerce Website
 VegaFoods is an e-commerce website designed to offer modern solutions and prioritize user experience. Built using HTML, Tailwind CSS, and JavaScript, this site offers a user-friendly platform for both customers and administrators. With its mobile-responsive design and flexible layout, it ensures a seamless experience across all devices.
